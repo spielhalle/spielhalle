@@ -296,8 +296,9 @@ export class TankGame extends PIXI.Container {
 
     public spawnProjectile() {
         let pr: Projectile = new Projectile();
-        pr.x = this.tank.x;
-        pr.y = this.tank.y;
+        let pp = this.toLocal(new PIXI.Point(0, 10), this.tank);
+        pr.x = pp.x;
+        pr.y = pp.y;
         pr.lastX = this.tank.x;
         pr.lastY = this.tank.y;
         pr.velocity.y = Math.sin(this.tank.rotation + this.tank.turretAngle) * this.power;
