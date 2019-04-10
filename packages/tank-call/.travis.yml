@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "8"
+  - "9"
+  - "10"
+env:
+  matrix:
+  - TEST_SUITE=build
+cache:
+  directories:
+  - node_modules
+script:
+- npm run test:$TEST_SUITE
