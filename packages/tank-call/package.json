@@ -6,6 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "node_modules/.bin/tsc --sourceMap --outDir ./build/",
+        "test:build": "npm run build",
         "build:webpack": "node_modules/.bin/webpack"
     },
     "repository": {
