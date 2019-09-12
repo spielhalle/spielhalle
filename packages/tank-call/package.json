@@ -16,7 +16,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "@types/pixi.js": "^4.8.8",
+        "@types/pixi.js": "^4.8.9",
         "brfs": "^2.0.2",
         "copy-webpack-plugin": "^5.0.4",
         "file-loader": "^4.2.0",
