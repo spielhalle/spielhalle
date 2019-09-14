@@ -3,7 +3,7 @@ node_js:
   - "8"
   - "9"
   - "10"
-  - "latest"
+  - "stable"
 env:
   matrix:
   - TEST_SUITE=build
@@ -12,3 +12,18 @@ cache:
   - node_modules
 script:
 - npm run test:$TEST_SUITE
+jobs:
+  include:
+  - stage: github pages release
+    node_js: 'stable'
+    script: npm run build
+    if: branch = master
+    deploy:
+      provider: pages
+      skip-cleanup: true
+      local-dir: docs
+      github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+      keep-history: true
+      on:
+        branch: master
+        
