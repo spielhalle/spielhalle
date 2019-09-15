@@ -16,7 +16,7 @@ jobs:
   include:
   - stage: github pages release
     node_js: 'stable'
-    script: npm run build
+    script: npm run build:webpack
     if: branch = master
     deploy:
       provider: pages
