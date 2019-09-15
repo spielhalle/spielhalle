@@ -1,3 +1,4 @@
+import * as PIXI from "pixi.js";
 export class Background extends PIXI.Container {
 
 
@@ -19,6 +20,6 @@ export class Background extends PIXI.Container {
         gradient.addColorStop(1, '#64B5F6');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, 100, 100);
-        return new PIXI.Sprite(PIXI.Texture.fromCanvas(canv));
+        return new PIXI.Sprite(PIXI.Texture.from(canv));
     }
 }
