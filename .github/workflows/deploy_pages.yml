@@ -31,11 +31,9 @@ jobs:
           npx lerna bootstrap --ci
       - name: Build
         run: |
-          npx lerna run build $(npx lerna ls --scope @spielhalle/client-ng --include-dependencies | grep -v '^@spielhalle/client-ng$' | xargs -n1 echo '--scope')
-          echo "${{ secrets.APP_DEPLOY_ENVIRONMENT }}" > "./packages/client-ng/src/environments/environment.ts"
-          echo "${{ secrets.APP_DEPLOY_ENVIRONMENT }}" > "./packages/client-ng/src/environments/environment.prod.ts"
-          npx lerna exec --scope=@spielhalle/client-ng -- ng build --prod
-          cp ./packages/client-ng/dist/spielhalle/index.html ./packages/client-ng/dist/spielhalle/404.html
+          npx lerna run build $(npx lerna ls --scope @spielhalle/client --include-dependencies | grep -v '^@spielhalle/client$' | xargs -n1 echo '--scope')
+          npx lerna exec --scope=@spielhalle/client -- ng build --prod
+          cp ./packages/client/dist/spielhalle/index.html ./packages/client/dist/spielhalle/404.html
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.2.0
         with:
@@ -45,7 +43,7 @@ jobs:
         with:
           SSH: true
           BRANCH: master # The branch the action should deploy to.
-          FOLDER: packages/client-ng/dist/spielhalle # The folder the action should deploy.
+          FOLDER: packages/client/dist/spielhalle # The folder the action should deploy.
           REPOSITORY_NAME: spielhalle/spielhalle.github.io
           TARGET_FOLDER: .
           CLEAN: true
