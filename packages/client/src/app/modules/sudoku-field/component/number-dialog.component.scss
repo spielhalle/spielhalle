@@ -1,0 +1,11 @@
+:host{
+    width:min(90vw,90vh);
+    height:min(90vw,90vh);
+    max-width: 480px;
+    max-height: 480px;
+}
+mat-dialog-content {
+    button{
+        width:33%;
+    }
+}

@@ -1,0 +1,6 @@
+svg(viewBox="0 0 90 90",xmlns="http://www.w3.org/2000/svg")
+    path(d="M29.8,0L29.8,90L30.2,90L30.2,0ZM59.8,0L59.8,90L60.2,90,L60.2,0Z")
+    path(d="M0,29.8L90,29.8L90,30.2L0,30.2ZM0,59.8L90,59.8L90,60.2,L0,60.2Z")
+- for (var x = 0; x < 9; x++)
+    - for (var y = 0; y < 9; y++)
+        button(mat-button,(click)="onClickCell("+ x+","+y+")") {{ getValue(#{ x },#{ y }) }}
