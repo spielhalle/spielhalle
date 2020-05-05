@@ -1,0 +1,3 @@
+Node client for the trapeze api
+
+[![codecov](https://codecov.io/gh/spielhalle/spielhalle/branch/master/graph/badge.svg?flag=ApiClient)](https://codecov.io/gh/spielhalle/spielhalle/spielhalle/master/packages/api-client) [![npm version](https://badge.fury.io/js/%40spielhalle%2Fapi-client.svg)](https://badge.fury.io/js/%40spielhalle%2Fapi-client) [![dependencies Status](https://david-dm.org/spielhalle/spielhalle/status.svg?path=packages/api-client)](https://david-dm.org/spielhalle/spielhalle?path=packages/api-client) [![devDependencies Status](https://david-dm.org/spielhalle/spielhalle/dev-status.svg?path=packages/api-client)](https://david-dm.org/spielhalle/spielhalle?path=packages/api-client&type=dev)
