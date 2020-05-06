@@ -1,0 +1,13 @@
+$field_size: 80;
+$layout-break: 930px;
+:host{
+    @media(min-width: $layout-break){
+        width:80vw;
+        min-width: $layout-break;
+        margin:0 auto;
+    }
+    @media(max-width: ( $layout-break - 1 )){
+        width:100vw;
+    }
+    
+}

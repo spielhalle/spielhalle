@@ -1,0 +1,15 @@
+$field_size: 80;
+$sudoku_max_size: 800px;
+:host{
+    display: flex;
+    height:100%;
+    width:100%;
+    flex-direction: column;
+    overflow: hidden;
+}
+div.content{
+    display:flex;
+    flex:1;
+    height:100%;
+    overflow: hidden;
+}
