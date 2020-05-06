@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import "~material-design-icons/iconfont/material-icons.css";
+html,
+body,
+app-root {
+    margin: 0px;
+    padding: 0px;
+}
+app-root {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}

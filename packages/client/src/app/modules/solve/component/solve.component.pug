@@ -1,0 +1,7 @@
+mat-toolbar(color="primary")
+  span Solve
+  span.toolbar-spacer
+  button(mat-icon-button,aria-hidden="false",aria-label="Example delete icon",(click)="clearField()")
+    mat-icon delete
+div.content
+    app-sudoku-field
