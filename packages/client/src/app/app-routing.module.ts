@@ -14,13 +14,8 @@ const appRoutes: Routes = [
     },
     {
         // tslint:disable-next-line:typedef
-        loadChildren: () => import('./modules/play/play.module').then((m) => m.PlayModule),
-        path: 'play',
-    },
-    {
-        // tslint:disable-next-line:typedef
-        loadChildren: () => import('./modules/solve/solve.module').then((m) => m.SolveModule),
-        path: 'solve',
+        loadChildren: () => import('./routes/sudoku/sudoku.module').then((m) => m.SudokuModule),
+        path: 'sudoku',
     },
     {
         component: NotFoundComponent,

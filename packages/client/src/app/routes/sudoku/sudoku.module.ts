@@ -7,9 +7,11 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { SudokuFieldModule } from '../sudoku-field';
-import { SolveComponent } from './component';
-import { SolveRoutingModule } from './solve-routing.module';
+import { SolveComponent } from './components';
+import { SudokuFieldModule } from './modules';
+import { SudokuBenchmarkModule } from './modules/sudoku-benchmark';
+import { SudokuSolverService } from './services';
+import { SudokuRoutingModule } from './sudoku-routing.module';
 @NgModule({
     declarations: [
         SolveComponent,
@@ -18,9 +20,13 @@ import { SolveRoutingModule } from './solve-routing.module';
         CommonModule,
         MatButtonModule,
         SudokuFieldModule,
-        SolveRoutingModule,
+        SudokuBenchmarkModule,
+        SudokuRoutingModule,
         MatToolbarModule,
         MatIconModule,
     ],
+    providers: [
+        SudokuSolverService,
+    ],
 })
-export class SolveModule { }
+export class SudokuModule { }
