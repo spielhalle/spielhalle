@@ -4,12 +4,17 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SudokuComponent } from './component/sudoku.component';
+import { SolveComponent } from './components';
+import { SudokuBenchmarkComponent } from './modules/sudoku-benchmark';
 
 const playRoutes: Routes = [
     {
-        component: SudokuComponent,
+        component: SolveComponent,
         path: '',
+    },
+    {
+        component: SudokuBenchmarkComponent,
+        path: 'benchmark',
     },
 ];
 
@@ -21,4 +26,4 @@ const playRoutes: Routes = [
         RouterModule.forChild(playRoutes),
     ],
 })
-export class PlayRoutingModule { }
+export class SudokuRoutingModule { }

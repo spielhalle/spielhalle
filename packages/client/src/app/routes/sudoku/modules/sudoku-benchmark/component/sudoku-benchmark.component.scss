@@ -1,0 +1,20 @@
+:host{
+    display:flex;
+    flex-direction: column;
+    width: 90vw;
+    max-width: 640px;
+    margin:0px auto;
+    mat-progress-bar{
+        width:100%;
+    }
+    div.size-select{
+        display:flex;
+        flex-direction: row;
+        mat-slider{
+            flex-grow: 1;
+        }
+    }
+    table{
+        width:100%;
+    }
+}

@@ -1,0 +1,20 @@
+h3 Benchmark
+p This is a tool to test the solver performance in different environments.
+div.size-select
+    p Boardsize {{ sudokuBoardSize}}
+    mat-slider(min="1",max="6",step="1",value="2",thumbLabel,[disabled]="calculating",tickInterval="1",(change)="onSizeSelected($event)",(input)="onSizeSelected($event)")
+mat-progress-bar(*ngIf="calculating",mode="indeterminate")
+button(mat-raised-button,color="primary",(click)="startTest()",[disabled]="calculating") Calculate
+mat-divider
+table(mat-table,[dataSource]="results")
+    ng-container(matColumnDef="boardSize")
+        th(mat-header-cell,*matHeaderCellDef) Size
+        td(mat-cell,*matCellDef="let element") {{element.boardSize}}
+    ng-container(matColumnDef="time")
+        th(mat-header-cell,*matHeaderCellDef) Time
+        td(mat-cell,*matCellDef="let element") {{element.time}}
+    ng-container(matColumnDef="results")
+        th(mat-header-cell,*matHeaderCellDef) Results
+        td(mat-cell,*matCellDef="let element") {{element.results}}
+    tr(mat-header-row,*matHeaderRowDef="displayedColumns")
+    tr(mat-row,*matRowDef="let row; columns: displayedColumns;")
