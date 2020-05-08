@@ -2,13 +2,6 @@
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/sudoku
  */
 
-import { EMPTY_CELL } from './constants';
-
-export const generateEmptyField = (boxSize: number): number[][] => {
-    const boardSize: number = boxSize ** 2;
-    return new Array(boardSize).fill(0).map((): number[] => new Array<number>(boardSize).fill(EMPTY_CELL));
-};
-
 export const TEST_FIELDS: number[][][] = [
     [[8, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 3, 6, 0, 0, 0, 0, 0],
