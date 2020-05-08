@@ -48,7 +48,7 @@
     "@angular/material": "~9.2.2",
     "@angular/platform-browser": "~9.1.5",
     "@angular/platform-browser-dynamic": "~9.1.5",
-    "@angular/platform-server": "~9.1.5",
+    "@angular/platform-server": "~9.1.6",
     "@angular/router": "~9.1.5",
     "@angular/service-worker": "~9.1.5",
     "@nguniversal/express-engine": "~9.1.0",
