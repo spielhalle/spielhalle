@@ -43,7 +43,7 @@ jobs:
         with:
           SSH: true
           BRANCH: master # The branch the action should deploy to.
-          FOLDER: packages/client/dist/spielhalle # The folder the action should deploy.
+          FOLDER: packages/client/dist/browser # The folder the action should deploy.
           REPOSITORY_NAME: spielhalle/spielhalle.github.io
           TARGET_FOLDER: .
           CLEAN: true
