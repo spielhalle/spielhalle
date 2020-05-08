@@ -2,7 +2,7 @@
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/sudoku
  */
 
-import { createEmptyFieldFromBoardSize } from '../create-empty-field';
+import { createEmptySudokuBoard } from '../create-empty-sudoku-board';
 import { CoverBoard } from './cover-board';
 import { ColumnNode, DancingNode } from './dancing-node';
 
@@ -72,7 +72,7 @@ export class DLX {
         this.results.push(field);
     }
     private parseSolution(answer: DancingNode[]): number[][] {
-        const result: number[][] = createEmptyFieldFromBoardSize(this.boardSize);
+        const result: number[][] = createEmptySudokuBoard(this.boardSize);
         for (const n of answer) {
             let rcNode: DancingNode = n;
             let min: number = parseInt(rcNode.column.name, 10);
