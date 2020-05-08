@@ -39,7 +39,7 @@
     "url": "https://github.com/spielhalle/spielhalle.git"
   },
   "dependencies": {
-    "@angular/animations": "~9.1.5",
+    "@angular/animations": "~9.1.6",
     "@angular/cdk": "~9.2.2",
     "@angular/common": "~9.1.5",
     "@angular/compiler": "~9.1.5",
