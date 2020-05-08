@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "e2e": "ng e2e",
-    "compodoc": "npx compodoc -p src/tsconfig.app.json -d ./docs",
+    "docs": "npx compodoc -p src/tsconfig.app.json -d ./docs",
     "postinstall": "npm run build:pug",
     "prepublishOnly": "npm run test && npm run docs && npm run build",
     "build:githubpages": "ng build --aot --prod --configuration=production,githubpages",
