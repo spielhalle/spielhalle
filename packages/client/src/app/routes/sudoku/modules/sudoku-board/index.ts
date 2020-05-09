@@ -3,4 +3,4 @@
  */
 
 export { SudokuFieldModule } from './sudoku-field.module';
-export { SudokuFieldComponent } from './component';
+export { SudokuBoardDirective as SudokuFieldComponent } from './component';

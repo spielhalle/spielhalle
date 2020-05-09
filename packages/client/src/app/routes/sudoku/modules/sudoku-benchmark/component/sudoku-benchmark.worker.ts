@@ -1,11 +1,11 @@
 /*!
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/client
  */
-/// <reference lib="webworker" />
-import { knuthSolveNum } from '@spielhalle/sudoku';
-import { ISudokuBenchmarkMessage, SudokuBenchmarkMessageType } from './sudoku-benchmark-message';
+/// <reference lib='webworker' />
+import { knuthSolve } from '@spielhalle/sudoku';
+import { SudokuBenchmarkMessage, SudokuBenchmarkMessageType } from './sudoku-benchmark-message';
 
-const reportStatus = (status: ISudokuBenchmarkMessage): void => {
+const reportStatus = (status: SudokuBenchmarkMessage): void => {
     self.postMessage(status);
 };
 addEventListener('message', (evt: MessageEvent): void => {
@@ -15,13 +15,29 @@ addEventListener('message', (evt: MessageEvent): void => {
         type: SudokuBenchmarkMessageType.STARTING,
     });
     const startTime: number = Date.now();
-    const results: number[][][] = knuthSolveNum(new Array(size)
+    let results: number = 0;
+    let lastResult: number = 0;
+    knuthSolve(new Array(size)
         .fill(0)
-        .map((): number[] => new Array<number>(size).fill(0)), size, Math.sqrt(size), 10 ** 5);
+        .map((): number[] => new Array<number>(size).fill(0)), size, Math.sqrt(size), (board: number[][]): boolean => {
+            results += 1;
+            const tDelta: number = Date.now() - startTime;
+            if (tDelta - lastResult > 100 || results === 1) {
+                lastResult = tDelta;
+                reportStatus({
+                    board,
+                    boardSize: size,
+                    results,
+                    time: tDelta,
+                    type: SudokuBenchmarkMessageType.PROGRESS,
+                });
+            }
+            return false;
+        });
     const endTime: number = Date.now();
     reportStatus({
         boardSize: size,
-        results: results.length,
+        results,
         time: endTime - startTime,
         type: SudokuBenchmarkMessageType.RESULT,
     });

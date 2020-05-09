@@ -7,18 +7,18 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
-import { SudokuFieldComponent } from './component';
+import { SudokuBoardDirective } from './component';
 import { NumberDialogComponent } from './component/number-dialog.component';
 @NgModule({
     declarations: [
-        SudokuFieldComponent,
+        SudokuBoardDirective,
         NumberDialogComponent,
     ],
     entryComponents: [
         NumberDialogComponent,
     ],
     exports: [
-        SudokuFieldComponent,
+        SudokuBoardDirective,
     ],
     imports: [
         CommonModule,

@@ -10,4 +10,5 @@ import { Component } from '@angular/core';
     templateUrl: './home.component.html',
 })
 export class HomeComponent {
+    public items: string[] = ['a', 'b', 'c'];
 }
