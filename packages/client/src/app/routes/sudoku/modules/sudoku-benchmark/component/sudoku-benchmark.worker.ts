@@ -2,7 +2,7 @@
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/client
  */
 /// <reference lib="webworker" />
-import { knuthSolve } from '@spielhalle/sudoku';
+import { knuthSolveNum } from '@spielhalle/sudoku';
 import { ISudokuBenchmarkMessage, SudokuBenchmarkMessageType } from './sudoku-benchmark-message';
 
 const reportStatus = (status: ISudokuBenchmarkMessage): void => {
@@ -15,7 +15,7 @@ addEventListener('message', (evt: MessageEvent): void => {
         type: SudokuBenchmarkMessageType.STARTING,
     });
     const startTime: number = Date.now();
-    const results: number[][][] = knuthSolve(new Array(size)
+    const results: number[][][] = knuthSolveNum(new Array(size)
         .fill(0)
         .map((): number[] => new Array<number>(size).fill(0)), size, Math.sqrt(size), 10 ** 5);
     const endTime: number = Date.now();

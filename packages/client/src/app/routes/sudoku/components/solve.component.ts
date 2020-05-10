@@ -3,7 +3,7 @@
  */
 
 import { Component, ViewChild } from '@angular/core';
-import { knuthSolve } from '@spielhalle/sudoku';
+import { knuthSolveNum } from '@spielhalle/sudoku';
 import { SudokuFieldComponent } from '../modules/sudoku-board';
 import { SudokuSolverService } from '../services';
 
@@ -24,7 +24,7 @@ export class SolveComponent {
         this.sudokuComponent.clear();
     }
     public onSolve(): void {
-        const solutions: number[][][] = knuthSolve(this.sudokuComponent.getBoard(), 9, 3, 5);
+        const solutions: number[][][] = knuthSolveNum(this.sudokuComponent.getBoard(), 9, 3, 5);
         if (solutions.length > 0) {
             this.sudokuComponent.field = solutions[0];
         }
