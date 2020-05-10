@@ -6,6 +6,7 @@ div.size-select
 mat-progress-bar(*ngIf="calculating",mode="indeterminate")
 button(mat-raised-button,color="primary",(click)="startTest()",[disabled]="calculating") Calculate
 mat-divider
+canvas(appSudokuBoard)
 table(mat-table,[dataSource]="results")
     ng-container(matColumnDef="boardSize")
         th(mat-header-cell,*matHeaderCellDef) Size

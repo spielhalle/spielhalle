@@ -11,6 +11,7 @@ import { SolveComponent } from './components';
 import { SudokuFieldModule } from './modules';
 import { SudokuBenchmarkModule } from './modules/sudoku-benchmark';
 import { SudokuSolverService } from './services';
+import { SudokuCanActivateGuard } from './sudoku-can-activate';
 import { SudokuRoutingModule } from './sudoku-routing.module';
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { SudokuRoutingModule } from './sudoku-routing.module';
     ],
     providers: [
         SudokuSolverService,
+        SudokuCanActivateGuard,
     ],
 })
 export class SudokuModule { }

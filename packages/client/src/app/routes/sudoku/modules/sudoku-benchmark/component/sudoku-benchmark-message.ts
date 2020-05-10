@@ -5,10 +5,20 @@
 export enum SudokuBenchmarkMessageType {
     STARTING = 0,
     RESULT = 1,
+    PROGRESS = 2,
 }
-export interface ISudokuBenchmarkMessage {
+export type SudokuBenchmarkMessage = {
     boardSize: number;
-    results?: number;
-    time?: number;
-    type: SudokuBenchmarkMessageType;
-}
+    type: SudokuBenchmarkMessageType.STARTING;
+} | {
+    board: number[][],
+    boardSize: number;
+    results: number;
+    time: number;
+    type: SudokuBenchmarkMessageType.PROGRESS;
+} | {
+    boardSize: number;
+    results: number;
+    time: number;
+    type: SudokuBenchmarkMessageType.RESULT;
+};

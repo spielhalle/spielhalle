@@ -9,6 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
+import { SudokuFieldModule } from '../sudoku-board/sudoku-field.module';
 import { SudokuBenchmarkComponent } from './component';
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { SudokuBenchmarkComponent } from './component';
         MatSliderModule,
         MatDividerModule,
         MatTableModule,
+        SudokuFieldModule,
     ],
 })
 export class SudokuBenchmarkModule { }
