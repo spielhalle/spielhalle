@@ -2,7 +2,7 @@
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/client
  */
 
-import { knuthSolve } from '@spielhalle/sudoku';
+import { knuthSolveNum } from '@spielhalle/sudoku';
 
 export class SudokuSolverService {
 
@@ -20,7 +20,7 @@ export class SudokuSolverService {
             });
         } else {
             return new Promise((resolve: (arg: number[][][]) => void): void => {
-                const results: number[][][] = knuthSolve(board, boardSize, boxSize, solutions);
+                const results: number[][][] = knuthSolveNum(board, boardSize, boxSize, solutions);
                 resolve(results);
             });
         }

@@ -2,7 +2,7 @@
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/sudoku
  */
 
-import { knuthSolve } from './coverboard';
+import { knuthSolveNum } from './coverboard';
 import { createEmptySudokuBoard } from './create-empty-sudoku-board';
 const indexMap: { [key: number]: number[] } = {};
 
@@ -21,7 +21,7 @@ export const createSudokuBoard = (boardSize: number, retainPercentage: number): 
     for (let i: number = 0; i < boardSize; i++) {
         board[i][Math.floor(Math.random() * boardSize)] = randomNumbers[i];
     }
-    const selectBoard: number[][] = knuthSolve(board, boardSize, boxSize, 1)[0];
+    const selectBoard: number[][] = knuthSolveNum(board, boardSize, boxSize, 1)[0];
     const removeIndexes: number[] = getIndexMap(boardSize)
         .sort((): number => Math.random() - 0.5);
     for (let i: number = 0; i <= Math.floor(removeIndexes.length * retainPercentage); i++) {

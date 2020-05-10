@@ -3,3 +3,4 @@
  */
 
 export { solve as knuthSolve } from './solve';
+export { solveNum as knuthSolveNum } from './solve';
