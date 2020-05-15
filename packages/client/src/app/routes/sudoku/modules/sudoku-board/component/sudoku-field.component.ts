@@ -2,7 +2,8 @@
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/client
  */
 
-import { Directive, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, HostListener } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { SudokuBoardGame } from './sudoku-board-game';
 import { SudokuFieldService } from './sudoku-field.service';
 @Directive({
@@ -25,6 +26,20 @@ export class SudokuBoardDirective implements OnChanges, OnDestroy, OnInit {
         this.sudokuService.setBoxSize(size);
     }
 
+    @HostListener('window:resize', ['$event'])
+    public onResize(event: Event): void {
+        if (event.type !== 'resize') {
+            return;
+        }
+        this.updateSize();
+    }
+
+    private updateSize(): void {
+        const canvasElement: HTMLCanvasElement = this.elementRef.nativeElement;
+        const boardWidth: number = canvasElement.offsetWidth;
+        const boardHeight: number = canvasElement.offsetHeight;
+        this.gameBoard.setSize(boardWidth, boardHeight);
+    }
     private gameBoard: SudokuBoardGame;
 
     constructor(public zone: NgZone,
@@ -36,8 +51,9 @@ export class SudokuBoardDirective implements OnChanges, OnDestroy, OnInit {
 
     public ngOnInit(): void {
         this.zone.runOutsideAngular((): void => {
-            this.gameBoard = new SudokuBoardGame(this.elementRef.nativeElement, true);
+            this.gameBoard = new SudokuBoardGame(this.elementRef.nativeElement, environment.production);
             this.gameBoard.start();
+            this.updateSize();
         });
     }
 
