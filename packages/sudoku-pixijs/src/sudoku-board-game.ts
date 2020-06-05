@@ -14,7 +14,7 @@ export class SudokuBoardGame {
     public constructor(public rootElement: HTMLCanvasElement,
         debug: boolean = false) {
         this.renderer = autoDetectRenderer({
-            transparent: debug,
+            transparent: !debug,
             view: rootElement,
         });
         this.stage = new Container();

@@ -18,6 +18,7 @@ export class SudokuBoardCell extends Container {
     private readonly txtItem: Text;
     private cellSize: number = 1;
     private backgroundGraphics: Graphics;
+    private progress: number = 0;
     public constructor() {
         super();
         this.interactive = true;
@@ -42,16 +43,17 @@ export class SudokuBoardCell extends Container {
             case 'pointerdown':
                 this.startRipple();
                 break;
+            case 'pointertap':
+                console.log('T', evt.data, evt.target);
+                this.startRipple();
+                break;
         }
     }
 
-    private progress: number = 0;
     public anim(t: DOMHighResTimeStamp): void {
         this.progress += t * 16.66;
         if (this.progress > 1000) {
             Ticker.shared.remove(this.anim, this);
-            // this.backgroundGraphics.clear();
-            //this.backgroundGraphics.renderable = false;
         } else {
             const maxRadius: number = this.cellSize / Math.sqrt(2);
             const currentRadius: number = Math.min(maxRadius, maxRadius / 1000 * this.progress);
@@ -61,13 +63,6 @@ export class SudokuBoardCell extends Container {
                 .beginFill(0xFFFFFF);
             this.backgroundGraphics
                 .drawCircle(cellCenter, cellCenter, currentRadius);
-            /*
-    const progress: number = currentRadius / maxRadius;
-    if (progress > 0.9) {
-        const progress2: number = (1 - progress) * 2;
-        this.backgroundGraphics.alpha = progress2;
-        console.log(this.backgroundGraphics.alpha);
-    }*/
         }
     }
 
