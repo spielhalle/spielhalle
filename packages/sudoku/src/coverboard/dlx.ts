@@ -5,14 +5,14 @@
 import { createEmptySudokuBoard } from '../create-empty-sudoku-board';
 import { CoverBoard } from './cover-board';
 import { ColumnNode, DancingNode } from './dancing-node';
-
+export type ResultCallback = (board: number[][]) => boolean;
 export class DLX {
 
     private header: ColumnNode;
     private answer: DancingNode[];
-    public results: number[][][] = [];
-
-    public constructor(cover: CoverBoard, public readonly boardSize: number, public readonly maxSolutions: number = 1) {
+    private resultCallback: ResultCallback;
+    private isDone: boolean = false;
+    public constructor(cover: CoverBoard, public readonly boardSize: number) {
         this.header = this.createDLXList(cover);
     }
 
@@ -69,7 +69,7 @@ export class DLX {
 
     public handleSolution(anser: DancingNode[]): void {
         const field: number[][] = this.parseSolution(anser);
-        this.results.push(field);
+        this.isDone = this.resultCallback(field);
     }
     private parseSolution(answer: DancingNode[]): number[][] {
         const result: number[][] = createEmptySudokuBoard(this.boardSize);
@@ -93,7 +93,7 @@ export class DLX {
         return result;
     }
     public search(k: number): void {
-        if (this.results.length >= this.maxSolutions) {
+        if (this.isDone) {
             return;
         }
         if (this.header.right === this.header) {
@@ -122,9 +122,10 @@ export class DLX {
         }
     }
 
-    public runSolver(): void {
+    public runSolver(cb: ResultCallback): void | number[][] {
         this.answer = [];
-        this.results = [];
+        this.isDone = false;
+        this.resultCallback = cb;
         this.search(0);
     }
 

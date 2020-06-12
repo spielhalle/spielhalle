@@ -1,6 +1,7 @@
 $field_size: 80;
 $layout-break: 930px;
 :host{
+    overflow:auto;
     @media(min-width: $layout-break){
         width:80vw;
         min-width: $layout-break;
@@ -8,6 +9,22 @@ $layout-break: 930px;
     }
     @media(max-width: ( $layout-break - 1 )){
         width:100vw;
+        display:block;
     }
-    
+    div.snap-parent{
+        display:flex;
+        flex-direction: column;
+        margin: 16px;
+        @media screen and (min-width: 600px){
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap: 16px;
+
+        }
+        @media screen and (min-width: 840px){
+            grid-template-columns:1fr 1fr 1fr;
+            gap: 24px;
+            margin: 24px;
+        }
+    }
 }
