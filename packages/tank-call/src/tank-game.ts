@@ -161,7 +161,7 @@ export class TankGame extends PIXI.Container {
         for (let i = 0; i < 9; i++) {
             this.spawnTargetNumber(i);
         }
-        let ticker = PIXI.ticker.shared;
+        let ticker = PIXI.Ticker.shared;
         ticker.add(deltaT => {
             for (let i = this.projectileContainer.children.length - 1; i >= 0; i--) {
                 let pr: Projectile = <Projectile>this.projectileContainer.getChildAt(i);
