@@ -29,6 +29,6 @@
         "webpack-cli": "~3.3.11"
     },
     "dependencies": {
-        "pixi.js": "~5.1.5"
+        "pixi.js": "~5.2.4"
     }
 }
