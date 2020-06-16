@@ -20,13 +20,15 @@ module.exports = {
         title: "Tank Calling",
         template: "src/index.html"
     }),
-    new CopyWebpackPlugin([
-        {
-            from: 'src/assets',
-            to: "assets",
-            toType: "dir"
-        }
-    ])
+    new CopyWebpackPlugin({
+        patterns: [
+            {
+                from: 'src/assets',
+                to: "assets",
+                toType: "dir"
+            }
+        ]
+    })
     ],
 
     module: {
