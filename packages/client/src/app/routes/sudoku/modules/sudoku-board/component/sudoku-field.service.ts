@@ -1,7 +1,9 @@
+import { Injectable } from "@angular/core";
 /*!
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/client
  */
 
+@Injectable()
 export class SudokuFieldService {
     public field: number[][] = [[]];
     public boardSize: number = 25;
