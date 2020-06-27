@@ -1,7 +1,8 @@
-import { Injectable } from "@angular/core";
 /*!
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/client
  */
+
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SudokuFieldService {
