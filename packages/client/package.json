@@ -87,7 +87,7 @@
     "pug": "~3.0.0",
     "pug-cli": "~1.0.0-alpha6",
     "pug-loader": "~2.4.0",
-    "ts-loader": "~7.0.5",
+    "ts-loader": "~8.0.0",
     "ts-node": "~8.10.2",
     "tslint": "~6.1.0",
     "typescript": "~3.9.6",
