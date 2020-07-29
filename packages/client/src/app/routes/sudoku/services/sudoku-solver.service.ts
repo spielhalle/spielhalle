@@ -2,8 +2,10 @@
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/client
  */
 
+import { Injectable } from '@angular/core';
 import { knuthSolveNum } from '@spielhalle/sudoku';
 
+@Injectable()
 export class SudokuSolverService {
 
     public constructor() {

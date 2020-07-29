@@ -28,8 +28,8 @@
               "src/styles.css"
             ],
             "scripts": [],
-            "es5BrowserSupport": true,
-            "webWorkerTsConfig": "tsconfig.worker.json"
+            "webWorkerTsConfig": "tsconfig.worker.json",
+            "preserveSymlinks": true
           },
           "configurations": {
             "production": {
@@ -100,7 +100,8 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.webmanifest"
-            ]
+            ],
+            "preserveSymlinks": true
           }
         },
         "lint": {
