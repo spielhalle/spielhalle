@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "@rollup/plugin-commonjs": "~15.0.0",
+    "@rollup/plugin-commonjs": "~15.1.0",
     "@rollup/plugin-node-resolve": "~9.0.0",
     "@rollup/plugin-typescript": "~6.0.0",
     "@types/chai": "~4.2.12",
