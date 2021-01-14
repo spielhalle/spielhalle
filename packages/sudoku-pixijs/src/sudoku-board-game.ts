@@ -1,8 +1,8 @@
 /*!
- * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/client
+ * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/sudoku-pixijs
  */
 
-import { autoDetectRenderer, Container, Graphics, Renderer, Text, TextStyle, Ticker } from 'pixi.js';
+import { autoDetectRenderer, Container, Graphics, Renderer } from 'pixi.js';
 import { SudokuBoardCell } from './sudoku-board-cell';
 
 export class SudokuBoardGame {
@@ -11,12 +11,10 @@ export class SudokuBoardGame {
     public readonly textLayer: Container;
     private animationFrameId: number;
     private gridGraphics: Graphics;
-    private ticker: Ticker;
     public constructor(public rootElement: HTMLCanvasElement,
         debug: boolean = false) {
-        this.ticker = Ticker.shared;
         this.renderer = autoDetectRenderer({
-            transparent: debug,
+            transparent: !debug,
             view: rootElement,
         });
         this.stage = new Container();
@@ -83,13 +81,6 @@ export class SudokuBoardGame {
     }
 
     public setBoard(board: number[][]): void {
-        let totalIdx: number = 0;
-        for (let x: number = 0; x < board.length; x++) {
-            for (let y: number = 0; y < board.length; y++) {
-                // this.updateText(this.textLayer.children[totalIdx] as Text, x, y, '' + board[x][y]);
-                totalIdx++;
-            }
-        }
     }
     public animate(t: DOMHighResTimeStamp): void {
         //this.ticker.update(t);

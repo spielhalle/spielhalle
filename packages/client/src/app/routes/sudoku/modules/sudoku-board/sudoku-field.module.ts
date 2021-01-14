@@ -8,15 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { SudokuBoardDirective } from './component';
-import { NumberDialogComponent } from './component/number-dialog.component';
 @NgModule({
     declarations: [
         SudokuBoardDirective,
-        NumberDialogComponent,
     ],
-    entryComponents: [
-        NumberDialogComponent,
-    ],
+    entryComponents: [],
     exports: [
         SudokuBoardDirective,
     ],
