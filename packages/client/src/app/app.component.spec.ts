@@ -3,7 +3,7 @@
  */
 
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing'; // tslint:disable:component-selector
 import { AppComponent } from './app.component';
 // tslint:disable:directive-selector
@@ -17,7 +17,7 @@ class TestMatToolbarComponent {
 // tslint:enable:component-selector
 // tslint:enable:directive-selector
 describe('AppComponent', (): void => {
-  beforeEach(async((): void => {
+  beforeEach(waitForAsync((): void => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
