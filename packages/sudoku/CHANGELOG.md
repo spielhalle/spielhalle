@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/spielhalle/spielhalle/compare/v0.3.0...v0.4.0) (2021-01-25)
+
+
+### Features
+
+* **sudoku:** add callback based sudoku knuthSolver ([#69](https://github.com/spielhalle/spielhalle/issues/69)) ([acd521e](https://github.com/spielhalle/spielhalle/commit/acd521ef6eafc2074a75205a91934c9b35d6849f))
+
+
+
+
+
+
 # [0.3.0](https://github.com/spielhalle/spielhalle/compare/v0.2.0...v0.3.0) (2020-05-08)
 
 
