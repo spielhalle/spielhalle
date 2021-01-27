@@ -1,4 +1,8 @@
 {
+    "automerge": true,
+    "labels": [
+        "dependencies"
+    ],
     "baseBranches": [
         "dev"
     ],
@@ -8,7 +12,8 @@
     "packageRules": [
         {
             "depTypeList": [
-                "devDependencies"
+                "devDependencies",
+                "dependencies"
             ],
             "automerge": true
         },
