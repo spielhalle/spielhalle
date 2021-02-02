@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/spielhalle/spielhalle/compare/v0.4.0...v0.4.1) (2021-02-02)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to v11.1.1 ([812be1a](https://github.com/spielhalle/spielhalle/commit/812be1ad58aad7e9e38d945d3e267816f23e63c4))
+* **deps:** update angularmaterial monorepo to v11.1.1 ([7e21d78](https://github.com/spielhalle/spielhalle/commit/7e21d784adcd309c9182791db96764c66686aa3b))
+* **deps:** update dependency @nguniversal/express-engine to v11.1.1 ([a0ea184](https://github.com/spielhalle/spielhalle/commit/a0ea184febb7bc04d8b9cd3f556c7778df827a4e))
+
+
+
+
+
+
 # [0.4.0](https://github.com/spielhalle/spielhalle/compare/v0.3.0...v0.4.0) (2021-01-25)
 
 
