@@ -51,7 +51,7 @@
     "@angular/platform-server": "11.2.0",
     "@angular/router": "11.2.0",
     "@angular/service-worker": "11.2.0",
-    "@nguniversal/express-engine": "11.1.2",
+    "@nguniversal/express-engine": "11.2.0",
     "@spielhalle/sudoku": "^0.4.1",
     "core-js": "3.8.3",
     "express": "4.17.1",
