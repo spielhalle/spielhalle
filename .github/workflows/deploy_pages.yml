@@ -36,7 +36,7 @@ jobs:
           npx lerna exec --scope=@spielhalle/client -- ng build --prod
           cp ./packages/client/dist/browser/index.html ./packages/client/dist/browser/404.html
       - name: Install SSH Client
-        uses: webfactory/ssh-agent@v0.4.1
+        uses: webfactory/ssh-agent@v0.5.0
         with:
           ssh-private-key: ${{ secrets.APP_DEPLOY_KEY }}
       - name: Deploy 🚀
@@ -76,7 +76,7 @@ jobs:
           npx lerna run docs
           node .github/workflows/prepare_docs_deploy.js
       - name: Install SSH Client 🔑
-        uses: webfactory/ssh-agent@v0.4.1
+        uses: webfactory/ssh-agent@v0.5.0
         with:
           ssh-private-key: ${{ secrets.DOCS_DEPLOY_KEY }}
       - name: Deploy 🚀
