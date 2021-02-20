@@ -1,28 +1,8 @@
 {
-    "automerge": true,
-    "labels": [
-        "dependencies"
-    ],
     "baseBranches": [
         "dev"
     ],
     "extends": [
-        "config:base"
-    ],
-    "packageRules": [
-        {
-            "depTypeList": [
-                "devDependencies",
-                "dependencies"
-            ],
-            "automerge": true
-        },
-        {
-            "depTypeList": [
-                "peerDependencies"
-            ],
-            "automerge": true,
-            "rangeStrategy": "replace"
-        }
+        "@donmahallem"
     ]
 }
