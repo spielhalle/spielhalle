@@ -3,7 +3,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { knuthSolveNum } from '@spielhalle/sudoku';
+import { knuthSolveNum } from '@donmahallem/sudoku';
 
 @Injectable()
 export class SudokuSolverService {
