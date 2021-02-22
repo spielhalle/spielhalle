@@ -2,7 +2,7 @@
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/client
  */
 /// <reference lib='webworker' />
-import { knuthSolve } from '@spielhalle/sudoku';
+import { knuthSolve } from '@donmahallem/sudoku';
 import { SudokuBenchmarkMessage, SudokuBenchmarkMessageType } from './sudoku-benchmark-message';
 
 const reportStatus = (status: SudokuBenchmarkMessage): void => {
