@@ -32,8 +32,7 @@ jobs:
           npx lerna bootstrap --ci
       - name: Build
         run: |
-          npx lerna run build $(npx lerna ls --scope @spielhalle/client --include-dependencies | grep -v '^@spielhalle/client$' | xargs -n1 echo '--scope')
-          npx lerna exec --scope=@spielhalle/client -- ng build --prod
+          npx lerna run build
           cp ./packages/client/dist/browser/index.html ./packages/client/dist/browser/404.html
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.5.0
