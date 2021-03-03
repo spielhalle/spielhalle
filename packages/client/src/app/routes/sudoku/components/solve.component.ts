@@ -4,7 +4,7 @@
 
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { knuthSolveNum } from '@spielhalle/sudoku';
+import { knuthSolveNum } from '@donmahallem/sudoku';
 import { SudokuFieldComponent } from '../modules/sudoku-board';
 import { SudokuSolverService } from '../services';
 
