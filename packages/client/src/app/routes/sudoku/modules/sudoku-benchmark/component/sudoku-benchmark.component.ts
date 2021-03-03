@@ -67,6 +67,6 @@ export class SudokuBenchmarkComponent implements OnDestroy {
     }
 
     public onSizeSelected(evt: MatSliderChange): void {
-        this.sudokuBoardSize = evt.value ** 2;
+        this.sudokuBoardSize = (evt.value || 0) ** 2;
     }
 }
