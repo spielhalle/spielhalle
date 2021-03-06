@@ -35,7 +35,7 @@ export class SudokuBoardGame {
             fontSize: 24,
         });
         for (let i: number = 0; i < 9 * 9; i++) {
-            const text: Text = new Text('' + i, txtStyle);
+            const text: Text = new Text(`${i}`, txtStyle);
             text.x = 25 + ((i % 9) * 50) - (text.width / 2);
             text.y = 25 + (Math.floor(i / 9) * 50) - (text.height / 2);
             this.textLayer.addChild(text);
@@ -53,7 +53,7 @@ export class SudokuBoardGame {
         let totalIdx: number = 0;
         for (let x: number = 0; x < board.length; x++) {
             for (let y: number = 0; y < board.length; y++) {
-                this.updateText(this.textLayer.children[totalIdx] as Text, x, y, '' + board[x][y]);
+                this.updateText(this.textLayer.children[totalIdx] as Text, x, y, `${board[x][y]}`);
                 totalIdx++;
             }
         }
