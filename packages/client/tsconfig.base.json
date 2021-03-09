@@ -1,11 +1,13 @@
 {
+  "extends": "./../../tsconfig.json",
   "compileOnSave": false,
   "compilerOptions": {
+    "rootDir": ".",
     "baseUrl": "./",
-    "downlevelIteration": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
+    "downlevelIteration": true,
     "module": "esnext",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -15,17 +17,13 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "paths": {
-      "core-js/es7/reflect": [
-        "node_modules/core-js/proposals/reflect-metadata"
-      ],
-      "core-js/es6/*": [
-        "node_modules/core-js/es/*"
-      ]
-    },
     "lib": [
       "es2018",
       "dom"
     ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }
