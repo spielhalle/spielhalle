@@ -1,0 +1,42 @@
+name: Test
+on: [push,pull_request]
+
+jobs:
+  test_suite:
+    runs-on: ${{ matrix.os }}
+    name: Test - ${{ matrix.os }} - Node ${{ matrix.node }}
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        node: [14, 15]
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      - name: Setup Cache
+        uses: actions/cache@v2.1.4
+        with:
+          path: |
+            ${{ steps.npm-cache.outputs.dir }}
+            node_modules
+          key: ${{ runner.os }}-node${{ matrix.node }}-npm-${{ hashFiles('**/package-lock.json') }}
+      - name: Install Deps
+        run: |
+          npm ci
+      - name: Run Build
+        run: npm run build:webpack
+  finish:
+    needs: test_suite
+    name: Finish Test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      run: echo "success"
