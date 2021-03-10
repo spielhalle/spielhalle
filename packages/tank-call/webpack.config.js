@@ -44,11 +44,6 @@ module.exports = {
             }, {
                 test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3)$/,
                 loader: 'file-loader'
-            }, {
-                enforce: "post",
-                include: path.resolve(__dirname,
-                    "node_modules/pixi.js"),
-                loader: "transform-loader?brfs"
             }
         ]
     },

@@ -1,4 +1,7 @@
-export class Projectile extends PIXI.Graphics {
+import { Graphics } from "@pixi/graphics";
+import { Point } from "@pixi/math";
+
+export class Projectile extends Graphics {
     constructor() {
         super();
         this.beginFill(0xFF0000);
@@ -14,9 +17,9 @@ export class Projectile extends PIXI.Graphics {
     public lastX: number = null;
     public lastY: number = null;
 
-    private static readonly GRAVITY: PIXI.Point = new PIXI.Point(0, -0.05);
+    private static readonly GRAVITY: Point = new Point(0, -0.05);
     private static readonly TERMINAL_VELOCITY: number = 10;
-    public velocity: PIXI.Point = new PIXI.Point();
+    public velocity: Point = new Point();
     public destroyed: boolean = false;
 
     public step(delta: number): void {

@@ -1,5 +1,8 @@
-import * as PIXI from "pixi.js";
-export class Background extends PIXI.Container {
+import { Texture } from "@pixi/core";
+import { Container } from "@pixi/display";
+import { Sprite } from "@pixi/sprite";
+
+export class Background extends Container {
 
 
     constructor(width: number, height: number) {
@@ -10,7 +13,7 @@ export class Background extends PIXI.Container {
         this.addChild(a);
     }
 
-    private createGradient(): PIXI.Sprite {
+    private createGradient(): Sprite {
         let canv = document.createElement("canvas");
         canv.width = 100;
         canv.height = 100;
@@ -20,6 +23,6 @@ export class Background extends PIXI.Container {
         gradient.addColorStop(1, '#64B5F6');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, 100, 100);
-        return new PIXI.Sprite(PIXI.Texture.from(canv));
+        return new Sprite(Texture.from(canv));
     }
 }

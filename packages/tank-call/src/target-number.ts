@@ -1,8 +1,11 @@
-export class TargetNumber extends PIXI.Container {
+import { Container } from "@pixi/display";
+import { Text, TextStyle } from "@pixi/text";
+
+export class TargetNumber extends Container {
 
     public _num: number = 0;
-    private text: PIXI.Text;
-    private textStyle = new PIXI.TextStyle({
+    private text: Text;
+    private textStyle = new TextStyle({
         fontFamily: 'Arial',
         fontSize: 20,
         fontWeight: 'bold',
@@ -10,7 +13,7 @@ export class TargetNumber extends PIXI.Container {
         stroke: '#4a1850',
         strokeThickness: 1
     });/*
-    private textStyle = new PIXI.TextStyle({
+    private textStyle = new TextStyle({
         fontFamily: 'Arial',
         fontSize: 36,
         fontStyle: 'italic',
@@ -29,7 +32,7 @@ export class TargetNumber extends PIXI.Container {
     constructor(num: number) {
         super();
         this._num = num;
-        this.text = new PIXI.Text("" + num, this.textStyle);
+        this.text = new Text("" + num, this.textStyle);
         this.addChild(this.text);
         this.centerText();
     }

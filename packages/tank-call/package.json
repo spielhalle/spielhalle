@@ -5,9 +5,9 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "node_modules/.bin/tsc --sourceMap --outDir ./build/",
+        "build": "tsc --sourceMap --outDir ./build/",
         "test:build": "npm run build:webpack",
-        "build:webpack": "node_modules/.bin/webpack"
+        "build:webpack": "webpack"
     },
     "repository": {
         "type": "git",

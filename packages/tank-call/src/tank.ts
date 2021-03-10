@@ -1,12 +1,16 @@
-export class Tank extends PIXI.Container {
-    private base: PIXI.Graphics;
-    private turret: PIXI.Graphics;
+import { Container } from "@pixi/display";
+import { Graphics } from "@pixi/graphics";
+import { Point } from "@pixi/math";
+
+export class Tank extends Container {
+    private base: Graphics;
+    private turret: Graphics;
     private _turretAngle: number = 0;
-    private static readonly TURRET_OFFSET: PIXI.Point = new PIXI.Point(0, 10);
+    private static readonly TURRET_OFFSET: Point = new Point(0, 10);
     constructor() {
         super();
-        this.base = new PIXI.Graphics();
-        this.turret = new PIXI.Graphics();
+        this.base = new Graphics();
+        this.turret = new Graphics();
         this.addChild(this.base);
         this.addChild(this.turret);
         this.redraw();

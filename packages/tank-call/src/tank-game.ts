@@ -13,8 +13,12 @@ import {
 import {
     Projectile
 } from "./projectile";
+import { Container } from "@pixi/display";
+import { Text, TextStyle } from "@pixi/text";
+import { Point, Rectangle } from "@pixi/math";
+import { Ticker } from "@pixi/ticker";
+import { InteractionEvent } from "@pixi/interaction";
 
-// source: https://github.com/kittykatattack/learningPixi#keyboard
 class KeyListener {
     private isDown: boolean = false;
     private isUp: boolean = true;
@@ -57,7 +61,7 @@ class KeyListener {
 }
 
 
-export class TankGame extends PIXI.Container {
+export class TankGame extends Container {
 
     private background: Background;
     private landscape: Landscape;
@@ -65,13 +69,13 @@ export class TankGame extends PIXI.Container {
     private gameWidth: number;
     private gameHeight: number;
     private initiated: boolean;
-    private projectileContainer: PIXI.Container = new PIXI.Container();
-    private numberContainer: PIXI.Container = new PIXI.Container();
+    private projectileContainer: Container = new Container();
+    private numberContainer: Container = new Container();
     private powerUpListener: KeyListener;
     private powerDownListener: KeyListener;
-    private powerText: PIXI.Text;
-    private callText: PIXI.Text;
-    private callTextStyle = new PIXI.TextStyle({
+    private powerText: Text;
+    private callText: Text;
+    private callTextStyle = new TextStyle({
         fontFamily: 'Arial',
         fontSize: 36,
         fontStyle: 'italic',
@@ -86,7 +90,7 @@ export class TankGame extends PIXI.Container {
         dropShadowDistance: 6,
     });
     private power: number = 10;
-    private powerTextStyle = new PIXI.TextStyle({
+    private powerTextStyle = new TextStyle({
         fontFamily: 'Arial',
         fontSize: 40,
         fontWeight: 'bold',
@@ -120,19 +124,19 @@ export class TankGame extends PIXI.Container {
             this.power = Math.max(0, this.power - 0.1);
             this.updatePowerText();
         });
-        this.powerText = new PIXI.Text("Power: " + 0, this.powerTextStyle);
+        this.powerText = new Text("Power: " + 0, this.powerTextStyle);
         this.powerText.scale.y = -1;
-        this.callText = new PIXI.Text("..", this.callTextStyle);
+        this.callText = new Text("..", this.callTextStyle);
         this.callText.scale.y = -1;
         this.callText.position.x = this.width / 2;
         //this.callText.position.y = this.height - 60;
         //Invert because double inverted... bs
         this.interactive = true;
-        this.on("pointertap", (tap: PIXI.interaction.InteractionEvent) => {
+        (this as any).on("pointertap", (tap: InteractionEvent) => {
             this.spawnProjectile();
         });
-        this.on("pointermove", (tap: PIXI.interaction.InteractionEvent) => {
-            let p: PIXI.Point = tap.data.getLocalPosition(this);
+        (this as any).on("pointermove", (tap: InteractionEvent) => {
+            let p: Point = tap.data.getLocalPosition(this);
             let dX: number = p.x - this.tank.x;
             let dY: number = p.y - this.tank.y;
             let rot: number = Math.atan2(dY, dX);
@@ -161,7 +165,7 @@ export class TankGame extends PIXI.Container {
         for (let i = 0; i < 9; i++) {
             this.spawnTargetNumber(i);
         }
-        let ticker = PIXI.Ticker.shared;
+        let ticker = Ticker.shared;
         ticker.add(deltaT => {
             for (let i = this.projectileContainer.children.length - 1; i >= 0; i--) {
                 let pr: Projectile = <Projectile>this.projectileContainer.getChildAt(i);
@@ -182,7 +186,7 @@ export class TankGame extends PIXI.Container {
                 } else {
                     for (let n: number = 0; n < this.numberContainer.children.length; n++) {
                         let num: TargetNumber = <TargetNumber>this.numberContainer.getChildAt(n);
-                        let ba: PIXI.Rectangle = num.getLocalBounds();
+                        let ba: Rectangle = num.getLocalBounds();
                         if (this.lineIntersect(pr.x, pr.y, pr.lastX, pr.lastY, num.x + ba.left, num.y + ba.top, num.x + ba.left, num.y + ba.bottom)) {
                             pr.destroyed = true;
                             this.projectileContainer.removeChild(pr).destroy();
@@ -296,7 +300,7 @@ export class TankGame extends PIXI.Container {
 
     public spawnProjectile() {
         let pr: Projectile = new Projectile();
-        let pp = this.toLocal(new PIXI.Point(0, 10), this.tank);
+        let pp = this.toLocal(new Point(0, 10), this.tank);
         pr.x = pp.x;
         pr.y = pp.y;
         pr.lastX = this.tank.x;
@@ -324,8 +328,8 @@ export class TankGame extends PIXI.Container {
 
         // ALIGNS THE TANK WITH THE FLOOR
         let angleSmooth: number = 5;
-        let pL: PIXI.Point = new PIXI.Point();
-        let pR: PIXI.Point = new PIXI.Point();
+        let pL: Point = new Point();
+        let pR: Point = new Point();
         pL.x = Math.max(0, this.tank.x - angleSmooth);
         pR.x = Math.min(this.gameWidth - 1, this.tank.x + angleSmooth);
         pL.y = this.landscape.getHeight(pL.x);

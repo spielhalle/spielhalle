@@ -1,10 +1,12 @@
+import { Graphics } from "@pixi/graphics";
+
 type Point = {
     x: number;
     y: number;
 }
 
 
-export class Landscape extends PIXI.Graphics {
+export class Landscape extends Graphics {
     private data: number[] = [];
     private sourceData: number[];
     private _hillHeight: number;
