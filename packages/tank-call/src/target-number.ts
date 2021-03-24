@@ -1,18 +1,22 @@
-import { Container } from "@pixi/display";
-import { Text, TextStyle } from "@pixi/text";
+/*!
+ * Source https://github.com/spielhalle/spielhalle Package: tank-call
+ */
+
+import { Container } from '@pixi/display';
+import { Text, TextStyle } from '@pixi/text';
 
 export class TargetNumber extends Container {
 
-    public _num: number = 0;
+    public mNum: number = 0;
     private text: Text;
-    private textStyle = new TextStyle({
+    private textStyle: TextStyle = new TextStyle({
+        fill: '#0000FF', // gradient
         fontFamily: 'Arial',
         fontSize: 20,
         fontWeight: 'bold',
-        fill: "#0000FF", // gradient
         stroke: '#4a1850',
-        strokeThickness: 1
-    });/*
+        strokeThickness: 1,
+    }); /*
     private textStyle = new TextStyle({
         fontFamily: 'Arial',
         fontSize: 36,
@@ -31,8 +35,8 @@ export class TargetNumber extends Container {
     });*/
     constructor(num: number) {
         super();
-        this._num = num;
-        this.text = new Text("" + num, this.textStyle);
+        this.mNum = num;
+        this.text = new Text(`${num}`, this.textStyle);
         this.addChild(this.text);
         this.centerText();
     }
@@ -44,12 +48,12 @@ export class TargetNumber extends Container {
     }
 
     public set num(num: number) {
-        this._num = num;
-        this.text.text = "" + num;
+        this.mNum = num;
+        this.text.text = `${num}`;
         this.centerText();
     }
 
     public get num(): number {
-        return this._num;
+        return this.mNum;
     }
 }
