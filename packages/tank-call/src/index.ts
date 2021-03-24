@@ -1,13 +1,16 @@
-import { Application } from "pixi.js";
-import {
-    TankGame
-} from "./tank-game";
+/*!
+ * Source https://github.com/spielhalle/spielhalle Package: tank-call
+ */
 
+import { Application } from 'pixi.js';
+import {
+    TankGame,
+} from './tank-game';
 
 // The application will create a renderer using WebGL, if possible,
 // with a fallback to a canvas render. It will also setup the ticker
 // and the root stage PIXI.Container.
-var app = new Application();
+const app: Application = new Application();
 
 // The application will create a canvas element for you that you
 // can then insert into the DOM.
