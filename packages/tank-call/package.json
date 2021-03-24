@@ -1,20 +1,27 @@
 {
-    "name": "tank-call",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "tsc --sourceMap --outDir ./build/",
-        "test:build": "npm run build:webpack",
-        "build:webpack": "webpack"
+    "name": "@spielhalle/tank-call",
+    "version": "0.0.0",
+    "description": "A tank call library",
+    "publishConfig": {
+        "access": "public"
     },
+    "homepage": "https://spielhalle.github.io/spielhalle/",
+    "author": {
+        "name": "donmahallem",
+        "email": "donmahallem@users.noreply.github.com",
+        "url": "https://github.com/donmahallem"
+    },
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/spielhalle/spielhalle/issues"
+    },
+    "files": [
+        "dist/*"
+    ],
     "repository": {
         "type": "git",
-        "url": "https://www.github.com/DonMahallem/tank-call"
+        "url": "https://github.com/spielhalle/spielhalle.git"
     },
-    "author": "",
-    "license": "ISC",
     "devDependencies": {
         "brfs": "2.0.2",
         "copy-webpack-plugin": "8.0.0",
