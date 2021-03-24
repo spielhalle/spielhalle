@@ -35,10 +35,6 @@ export class TankGame extends Container {
     private initiated: boolean;
     private projectileContainer: Container = new Container();
     private numberContainer: Container = new Container();
-    // tslint:disable-next-line:no-unused-variable
-    private powerUpListener: KeyListener;
-    // tslint:disable-next-line:no-unused-variable
-    private powerDownListener: KeyListener;
     private powerText: Text;
     private callText: Text;
     private callTextStyle: TextStyle = new TextStyle({
@@ -75,18 +71,18 @@ export class TankGame extends Container {
         if (this.initiated) {
             throw new Error('Already initiated');
         }
-        this.powerUpListener = KeyListener.create(87, undefined, (): void => {
+        KeyListener.create(87, undefined, (): void => {
             this.power = this.power + 0.1;
             this.updatePowerText();
         });
-        this.powerUpListener = KeyListener.create(87, undefined, (): void => {
+        KeyListener.create(87, undefined, (): void => {
             this.power = this.power + 0.1;
             this.updatePowerText();
         });
-        this.powerUpListener = KeyListener.create(82, undefined, (): void => {
+        KeyListener.create(82, undefined, (): void => {
             this.resetGame();
         });
-        this.powerDownListener = KeyListener.create(83, undefined, (): void => {
+        KeyListener.create(83, undefined, (): void => {
             this.power = Math.max(0, this.power - 0.1);
             this.updatePowerText();
         });
