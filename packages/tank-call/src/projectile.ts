@@ -1,5 +1,9 @@
-import { Graphics } from "@pixi/graphics";
-import { Point } from "@pixi/math";
+/*!
+ * Source https://github.com/spielhalle/spielhalle Package: tank-call
+ */
+
+import { Graphics } from '@pixi/graphics';
+import { Point } from '@pixi/math';
 
 export class Projectile extends Graphics {
     constructor() {
@@ -14,11 +18,11 @@ export class Projectile extends Graphics {
         this.endFill();
     }
 
-    public lastX: number = null;
-    public lastY: number = null;
-
     private static readonly GRAVITY: Point = new Point(0, -0.05);
     private static readonly TERMINAL_VELOCITY: number = 10;
+
+    public lastX: number = 0;
+    public lastY: number = 0;
     public velocity: Point = new Point();
     public destroyed: boolean = false;
 
@@ -29,7 +33,7 @@ export class Projectile extends Graphics {
         this.lastY = this.y;
         this.x = this.x + (delta * this.velocity.x);
         this.y = this.y + (delta * this.velocity.y);
-        if (this.velocity.x == 0) {
+        if (this.velocity.x === 0) {
             this.rotation = this.velocity.y >= 0 ? 0 : Math.PI;
         } else {
             this.rotation = Math.atan(this.velocity.y / this.velocity.x);
