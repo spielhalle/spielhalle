@@ -1,68 +1,32 @@
-import {
-    Tank
-} from "./tank";
-import {
-    Landscape
-} from "./landscape";
-import {
-    TargetNumber
-} from "./target-number";
-import {
-    Background
-} from "./background";
-import {
-    Projectile
-} from "./projectile";
-import { Container } from "@pixi/display";
-import { Text, TextStyle } from "@pixi/text";
-import { Point, Rectangle } from "@pixi/math";
-import { Ticker } from "@pixi/ticker";
-import { InteractionEvent } from "@pixi/interaction";
+/*!
+ * Source https://github.com/spielhalle/spielhalle Package: tank-call
+ */
 
-class KeyListener {
-    private isDown: boolean = false;
-    private isUp: boolean = true;
-    public readonly code: number;
-
-    private constructor(code: number) {
-        this.code = code;
-    }
-    private downHandler(event) {
-        if (event.keyCode === this.code) {
-            if (this.isUp && this.press) this.press();
-            this.isDown = true;
-            this.isUp = false;
-            event.preventDefault();
-        }
-    };
-    private upHandler = function (event) {
-        if (event.keyCode === this.code) {
-            if (this.isDown && this.release) this.release();
-            this.isDown = false;
-            this.isUp = true;
-            event.preventDefault();
-        }
-    };
-
-    public static create(keyCode: number, down: Function = null, up: Function = null): KeyListener {
-        let keyListener: KeyListener = new KeyListener(keyCode);
-        window.addEventListener(
-            "keydown", keyListener.downHandler.bind(keyListener), false
-        );
-        window.addEventListener(
-            "keyup", keyListener.upHandler.bind(keyListener), false
-        );
-        keyListener.press = down;
-        keyListener.release = up;
-        return keyListener;
-    }
-    press: Function;
-    release: Function;
-}
-
+import { Container } from '@pixi/display';
+import { InteractionEvent } from '@pixi/interaction';
+import { IPointData, Point, Rectangle } from '@pixi/math';
+import { Text, TextStyle } from '@pixi/text';
+import { Ticker } from '@pixi/ticker';
+import {
+    Background,
+} from './background';
+import { KeyListener } from './key-listener';
+import {
+    Landscape,
+} from './landscape';
+import {
+    Projectile,
+} from './projectile';
+import {
+    Tank,
+} from './tank';
+import {
+    TargetNumber,
+} from './target-number';
 
 export class TankGame extends Container {
 
+    private callNumber: string = '';
     private background: Background;
     private landscape: Landscape;
     private tank: Tank;
@@ -71,32 +35,34 @@ export class TankGame extends Container {
     private initiated: boolean;
     private projectileContainer: Container = new Container();
     private numberContainer: Container = new Container();
+    // tslint:disable-next-line:no-unused-variable
     private powerUpListener: KeyListener;
+    // tslint:disable-next-line:no-unused-variable
     private powerDownListener: KeyListener;
     private powerText: Text;
     private callText: Text;
-    private callTextStyle = new TextStyle({
+    private callTextStyle: TextStyle = new TextStyle({
+        dropShadow: true,
+        dropShadowAngle: Math.PI / 6,
+        dropShadowBlur: 4,
+        dropShadowColor: '#000000',
+        dropShadowDistance: 6,
+        fill: ['#ffffff', '#00ff99'], // gradient
         fontFamily: 'Arial',
         fontSize: 36,
         fontStyle: 'italic',
         fontWeight: 'bold',
-        fill: ['#ffffff', '#00ff99'], // gradient
         stroke: '#4a1850',
         strokeThickness: 5,
-        dropShadow: true,
-        dropShadowColor: '#000000',
-        dropShadowBlur: 4,
-        dropShadowAngle: Math.PI / 6,
-        dropShadowDistance: 6,
     });
     private power: number = 10;
-    private powerTextStyle = new TextStyle({
+    private powerTextStyle: TextStyle = new TextStyle({
+        fill: '#FFFFFF', // gradient
         fontFamily: 'Arial',
         fontSize: 40,
         fontWeight: 'bold',
-        fill: "#FFFFFF", // gradient
         stroke: '#000000',
-        strokeThickness: 2
+        strokeThickness: 2,
     });
     constructor(width: number, height: number) {
         super();
@@ -106,45 +72,43 @@ export class TankGame extends Container {
     }
 
     private init(): void {
-        if (this.initiated === true) {
-            throw new Error("Already initiated");
+        if (this.initiated) {
+            throw new Error('Already initiated');
         }
-        this.powerUpListener == KeyListener.create(87, null, () => {
+        this.powerUpListener = KeyListener.create(87, undefined, (): void => {
             this.power = this.power + 0.1;
             this.updatePowerText();
         });
-        this.powerUpListener == KeyListener.create(87, null, () => {
+        this.powerUpListener = KeyListener.create(87, undefined, (): void => {
             this.power = this.power + 0.1;
             this.updatePowerText();
         });
-        this.powerUpListener == KeyListener.create(82, null, () => {
+        this.powerUpListener = KeyListener.create(82, undefined, (): void => {
             this.resetGame();
         });
-        this.powerDownListener == KeyListener.create(83, null, () => {
+        this.powerDownListener = KeyListener.create(83, undefined, (): void => {
             this.power = Math.max(0, this.power - 0.1);
             this.updatePowerText();
         });
-        this.powerText = new Text("Power: " + 0, this.powerTextStyle);
+        this.powerText = new Text('Power: 0', this.powerTextStyle);
         this.powerText.scale.y = -1;
-        this.callText = new Text("..", this.callTextStyle);
+        this.callText = new Text('..', this.callTextStyle);
         this.callText.scale.y = -1;
         this.callText.position.x = this.width / 2;
-        //this.callText.position.y = this.height - 60;
-        //Invert because double inverted... bs
+        // this.callText.position.y = this.height - 60;
+        // Invert because double inverted... bs
         this.interactive = true;
-        (this as any).on("pointertap", (tap: InteractionEvent) => {
+        (this as any).on('pointertap', (tap: InteractionEvent): void => {
             this.spawnProjectile();
         });
-        (this as any).on("pointermove", (tap: InteractionEvent) => {
-            let p: Point = tap.data.getLocalPosition(this);
-            let dX: number = p.x - this.tank.x;
-            let dY: number = p.y - this.tank.y;
+        (this as any).on('pointermove', (tap: InteractionEvent): void => {
+            const p: IPointData = tap.data.getLocalPosition(this);
+            const dX: number = p.x - this.tank.x;
+            const dY: number = p.y - this.tank.y;
             let rot: number = Math.atan2(dY, dX);
 
-            //correct turret rot
-            rot = rot - this.tank.rotation;// + (dX < 0 ? Math.PI : 0);
+            rot = rot - this.tank.rotation;
             this.tank.turretAngle = rot;
-            //console.log(rot);
         });
         this.background = new Background(this.gameWidth, this.gameHeight);
         this.background.x = 0;
@@ -162,13 +126,13 @@ export class TankGame extends Container {
         this.updatePowerText();
         this.updateCallText();
         this.initiated = true;
-        for (let i = 0; i < 9; i++) {
+        for (let i: number = 0; i < 9; i++) {
             this.spawnTargetNumber(i);
         }
-        let ticker = Ticker.shared;
-        ticker.add(deltaT => {
-            for (let i = this.projectileContainer.children.length - 1; i >= 0; i--) {
-                let pr: Projectile = <Projectile>this.projectileContainer.getChildAt(i);
+        const ticker: Ticker = Ticker.shared;
+        ticker.add((deltaT: number): void => {
+            for (let i: number = this.projectileContainer.children.length - 1; i >= 0; i--) {
+                const pr: Projectile = this.projectileContainer.getChildAt(i) as Projectile;
                 pr.step(deltaT);
                 if (pr.destroyed) {
 
@@ -185,36 +149,48 @@ export class TankGame extends Container {
                     this.projectileContainer.removeChild(pr).destroy();
                 } else {
                     for (let n: number = 0; n < this.numberContainer.children.length; n++) {
-                        let num: TargetNumber = <TargetNumber>this.numberContainer.getChildAt(n);
-                        let ba: Rectangle = num.getLocalBounds();
-                        if (this.lineIntersect(pr.x, pr.y, pr.lastX, pr.lastY, num.x + ba.left, num.y + ba.top, num.x + ba.left, num.y + ba.bottom)) {
+                        const num: TargetNumber = this.numberContainer.getChildAt(n) as TargetNumber;
+                        const ba: Rectangle = num.getLocalBounds();
+                        if (this.lineIntersect(pr,
+                            { x: pr.lastX, y: pr.lastY },
+                            { x: num.x + ba.left, y: num.y + ba.top },
+                            { x: num.x + ba.left, y: num.y + ba.bottom })) {
                             pr.destroyed = true;
                             this.projectileContainer.removeChild(pr).destroy();
-                            console.log("hit", num.num);
+                            console.log('hit', num.num);
                             this.callNumber += num.num;
                             this.updateCallText();
                             this.relocateNumber(num);
                             break;
-                        } else if (this.lineIntersect(pr.x, pr.y, pr.lastX, pr.lastY, num.x + ba.left, num.y + ba.top, num.x + ba.right, num.y + ba.top)) {
+                        } else if (this.lineIntersect(pr,
+                            { x: pr.lastX, y: pr.lastY },
+                            { x: num.x + ba.left, y: num.y + ba.top },
+                            { x: num.x + ba.right, y: num.y + ba.top })) {
                             pr.destroyed = true;
                             this.projectileContainer.removeChild(pr).destroy();
-                            console.log("hit", num.num);
+                            console.log('hit', num.num);
                             this.callNumber += num.num;
                             this.updateCallText();
                             this.relocateNumber(num);
                             break;
-                        } else if (this.lineIntersect(pr.x, pr.y, pr.lastX, pr.lastY, num.x + ba.right, num.y + ba.top, num.x + ba.right, num.y + ba.bottom)) {
+                        } else if (this.lineIntersect(pr,
+                            { x: pr.lastX, y: pr.lastY },
+                            { x: num.x + ba.right, y: num.y + ba.top },
+                            { x: num.x + ba.right, y: num.y + ba.bottom })) {
                             pr.destroyed = true;
                             this.projectileContainer.removeChild(pr).destroy();
-                            console.log("hit", num.num);
+                            console.log('hit', num.num);
                             this.callNumber += num.num;
                             this.updateCallText();
                             this.relocateNumber(num);
                             break;
-                        } else if (this.lineIntersect(pr.x, pr.y, pr.lastX, pr.lastY, num.x + ba.left, num.y + ba.bottom, num.x + ba.right, num.y + ba.bottom)) {
+                        } else if (this.lineIntersect(pr,
+                            { x: pr.lastX, y: pr.lastY },
+                            { x: num.x + ba.left, y: num.y + ba.bottom },
+                            { x: num.x + ba.right, y: num.y + ba.bottom })) {
                             pr.destroyed = true;
                             this.projectileContainer.removeChild(pr).destroy();
-                            console.log("hit", num.num);
+                            console.log('hit', num.num);
                             this.callNumber += num.num;
                             this.updateCallText();
                             this.relocateNumber(num);
@@ -223,84 +199,90 @@ export class TankGame extends Container {
                     }
                 }
             }
-            //console.log(this.tank.rotation);
         });
-        console.log(this.lineIntersect(0, 0, 1, 1, 0, 1, 1, 0));
-        //ticker.speed = 0.1;
+        console.log(this.lineIntersect({ x: 0, y: 0 },
+            { x: 1, y: 1 },
+            { x: 0, y: 1 },
+            { x: 1, y: 0 }));
     }
 
     private gravitateObjects(): void {
         this.tank.y = this.landscape.getHeight(this.tank.x);
         this.levelTank();
         for (let n: number = 0; n < this.numberContainer.children.length; n++) {
-            let num: TargetNumber = <TargetNumber>this.numberContainer.getChildAt(n);
+            const num: TargetNumber = this.numberContainer.getChildAt(n) as TargetNumber;
             num.y = this.landscape.getHeight(num.x);
         }
     }
 
-    private resetGame() {
-        this.callNumber = "";
+    private resetGame(): void {
+        this.callNumber = '';
         this.updateCallText();
-        for (let n = this.projectileContainer.children.length - 1; n >= 0; n--) {
+        for (let n: number = this.projectileContainer.children.length - 1; n >= 0; n--) {
             this.projectileContainer.removeChildAt(n).destroy();
         }
         this.landscape.regenerate();
         this.randomizeTankPosition();
         for (let n: number = 0; n < this.numberContainer.children.length; n++) {
-            let num: TargetNumber = <TargetNumber>this.numberContainer.getChildAt(n);
+            const num: TargetNumber = this.numberContainer.getChildAt(n) as TargetNumber;
             this.relocateNumber(num);
         }
     }
 
-    private relocateNumber(d: TargetNumber) {
-        let t = false;
+    private relocateNumber(d: TargetNumber): void {
+        let t: boolean = false;
         do {
             t = false;
             d.x = Math.round(Math.random() * this.gameWidth);
-            for (let i = 0; i < this.numberContainer.children.length; i++) {
+            for (let i: number = 0; i < this.numberContainer.children.length; i++) {
                 if (this.numberContainer.getChildAt(i) === d) {
-                    console.log("eq");
+                    console.log('eq');
                     continue;
                 } else if (Math.abs(d.x - this.numberContainer.getChildAt(i).x) < 15) {
                     t = true;
                 }
             }
-        } while (Math.abs(this.tank.x - d.x) < 40 || t == true)
+        } while (Math.abs(this.tank.x - d.x) < 40 || t);
         d.y = this.landscape.getHeight(d.x);
     }
 
-    private lineIntersect(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
+    private lineIntersect(p0: IPointData,
+        p1: IPointData,
+        p2: IPointData,
+        p3: IPointData): boolean {
 
-        var s1_x, s1_y, s2_x, s2_y;
-        s1_x = p1_x - p0_x;
-        s1_y = p1_y - p0_y;
-        s2_x = p3_x - p2_x;
-        s2_y = p3_y - p2_y;
+        let s1X: number;
+        let s1Y: number;
+        let s2X: number;
+        let s2Y: number;
+        s1X = p1.x - p0.x;
+        s1Y = p1.y - p0.y;
+        s2X = p3.x - p2.x;
+        s2Y = p3.y - p2.y;
 
-        var s, t;
-        s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
-        t = (s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
+        let s: number;
+        let t: number;
+        s = (-s1Y * (p0.x - p2.x) + s1X * (p0.y - p2.y)) / (-s2X * s1Y + s1X * s2Y);
+        t = (s2X * (p0.y - p2.y) - s2Y * (p0.x - p2.x)) / (-s2X * s1Y + s1X * s2Y);
 
         return (s >= 0 && s <= 1 && t >= 0 && t <= 1);
     }
 
     private updatePowerText(): void {
-        this.powerText.text = "Power: " + this.power;
+        this.powerText.text = `Power: ${this.power}`;
         this.powerText.pivot.y = this.powerText.height;
     }
 
-    private callNumber: string = "";
-
     private updateCallText(): void {
-        this.callText.text = this.callNumber == "" ? "..." : this.callNumber;
+        this.callText.text = this.callNumber === '' ? '...' : this.callNumber;
         this.callText.pivot.y = this.callText.height;
         this.callText.position.x = (this.width - this.callText.width) / 2;
         this.callText.position.y = this.height - 150;
     }
 
-    public spawnProjectile() {
-        let pr: Projectile = new Projectile();
-        let pp = this.toLocal(new Point(0, 10), this.tank);
+    public spawnProjectile(): void {
+        const pr: Projectile = new Projectile();
+        const pp: Point = this.toLocal(new Point(0, 10), this.tank);
         pr.x = pp.x;
         pr.y = pp.y;
         pr.lastX = this.tank.x;
@@ -311,7 +293,7 @@ export class TankGame extends Container {
     }
 
     public spawnTargetNumber(num: number = 0): TargetNumber {
-        let target: TargetNumber = new TargetNumber(num);
+        const target: TargetNumber = new TargetNumber(num);
         this.relocateNumber(target);
         this.numberContainer.addChild(target);
         return target;
@@ -327,16 +309,13 @@ export class TankGame extends Container {
     private levelTank(): void {
 
         // ALIGNS THE TANK WITH THE FLOOR
-        let angleSmooth: number = 5;
-        let pL: Point = new Point();
-        let pR: Point = new Point();
+        const angleSmooth: number = 5;
+        const pL: Point = new Point();
+        const pR: Point = new Point();
         pL.x = Math.max(0, this.tank.x - angleSmooth);
         pR.x = Math.min(this.gameWidth - 1, this.tank.x + angleSmooth);
         pL.y = this.landscape.getHeight(pL.x);
         pR.y = this.landscape.getHeight(pR.x);
         this.tank.rotation = Math.tanh((pR.y - pL.y) / (pR.x - pL.x));
     }
-
-
-
 }
