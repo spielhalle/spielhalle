@@ -2,6 +2,26 @@
     "name": "@spielhalle/tank-call",
     "version": "0.0.0",
     "description": "A tank call library",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "types": "dist/types/index.d.ts",
+    "private": false,
+    "scripts": {
+        "build": "rollup -c ./rollup.config.js && npm run build:types",
+        "build:types": "tsc --project ./tsconfig.json  -d --declarationDir dist/types --declarationMap --emitDeclarationOnly",
+        "build:readme": "npx @appnest/readme generate --input ../package_readme_blueprint.md --config readme_config.json",
+        "test": "mocha --config ../../.mocharc.yml",
+        "test:coverage": "nyc --nycrc-path ../../.nycrc.json npm run test",
+        "lint": "tslint -c tslint.json -p tsconfig.json src/**/*.ts",
+        "lint:fix": "tslint --fix -c tslint.json -p tsconfig.json src/**/*.ts",
+        "docs": "typedoc --options ../../typedoc.json",
+        "prepublishOnly": "npm run test && npm run docs && npm run build",
+        "version": "npm run build:readme && git add README.md"
+    },
+    "files": [
+        "dist/*",
+        "src/*"
+    ],
     "publishConfig": {
         "access": "public"
     },
@@ -15,9 +35,6 @@
     "bugs": {
         "url": "https://github.com/spielhalle/spielhalle/issues"
     },
-    "files": [
-        "dist/*"
-    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/spielhalle/spielhalle.git"
