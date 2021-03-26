@@ -6,7 +6,7 @@
     "@donmahallem/tslint-config": "0.1.2",
     "@rollup/plugin-commonjs": "18.0.0",
     "@rollup/plugin-node-resolve": "11.2.0",
-    "@rollup/plugin-typescript": "8.2.0",
+    "@rollup/plugin-typescript": "8.2.1",
     "@types/chai": "4.2.15",
     "@types/mocha": "8.2.2",
     "@types/node": "14.14.36",
