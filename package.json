@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "@donmahallem/rollup-config": "0.1.5",
+    "@donmahallem/rollup-config": "0.1.6",
     "@donmahallem/tslint-config": "0.1.2",
     "@rollup/plugin-commonjs": "18.0.0",
     "@rollup/plugin-node-resolve": "11.2.1",
