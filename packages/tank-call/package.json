@@ -52,6 +52,6 @@
         "webpack-cli": "4.6.0"
     },
     "dependencies": {
-        "pixi.js": "~6.0.0"
+        "pixi.js": "~6.0.1"
     }
 }
