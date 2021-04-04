@@ -2,10 +2,10 @@
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/client
  */
 
-import { autoDetectRenderer, Container, Graphics, Renderer, Text, TextStyle } from 'pixi.js';
+import { autoDetectRenderer, AbstractRenderer, Container, Graphics, Text, TextStyle } from 'pixi.js';
 
 export class SudokuBoardGame {
-    public readonly renderer: Renderer;
+    public readonly renderer: AbstractRenderer;
     public readonly stage: Container;
     public readonly textLayer: Container;
     private animationFrameId: number;
