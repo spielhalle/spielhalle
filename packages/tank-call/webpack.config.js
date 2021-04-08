@@ -2,9 +2,9 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
-    entry: "./src/index.ts",
+    entry: "./src/app.ts",
     output: {
-        path: path.resolve("build"),
+        path: path.resolve("dist/web"),
         filename: "bundle.js",
     },
 
