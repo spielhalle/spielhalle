@@ -150,7 +150,7 @@ export class Landscape extends Graphics {
                 this.lineTo(i, this.data[i]);
             }
         }
-        this.lineTo(this.width, 0);
+        this.lineTo(this.hillWidth, 0);
         this.lineTo(0, 0);
         this.endFill();
     }
