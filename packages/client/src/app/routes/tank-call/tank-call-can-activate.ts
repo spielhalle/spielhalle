@@ -20,10 +20,10 @@ export class TankCallCanActivateGuard implements CanActivate {
                     if (boxSize === Math.floor(boxSize)) {
                         return true;
                     }
-                    return this.router.createUrlTree(['/sudoku', Math.floor(boxSize) ** 2]);
+                    return this.router.createUrlTree(['/tank-call', Math.floor(boxSize) ** 2]);
                 }
             }
         }
-        return this.router.createUrlTree(['/sudoku']);
+        return this.router.createUrlTree(['/tank-call']);
     }
 }

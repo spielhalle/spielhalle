@@ -9,7 +9,6 @@ import { TankCallCanActivateGuard } from './tank-call-can-activate';
 
 const playRoutes: Routes = [
     {
-        canActivate: [TankCallCanActivateGuard],
         component: TankCallComponent,
         path: '',
     },
