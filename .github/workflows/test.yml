@@ -8,7 +8,7 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
-        node: [10, 12, 14]
+        node: [12, 14]
         #os: [ubuntu-latest, windows-latest]
         os: [ubuntu-latest]
     steps:
@@ -23,7 +23,7 @@ jobs:
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
       - name: Setup Cache
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.6
         with:
           path: |
             ${{ steps.npm-cache.outputs.dir }}
@@ -35,17 +35,15 @@ jobs:
           npm ci
           npx lerna bootstrap --ci
       - name: Run Build
-        run: npm run build
+        run: |
+          npm run build
+          npx lerna run prerender:githubpages
       - name: Run Test
         run: npm run test:coverage --no-sort
-      - name: Merge Test Reports
-        run: npm run coverage:merge
-      - name: Upload Coverage to Coveralls
-        uses: coverallsapp/github-action@master
+      - name: Upload coverage to Codecov Monorepo
+        uses: donmahallem/codecov-monorepo@release
         with:
-          github-token: ${{ secrets.github_token }}
-          flag-name: ${{ matrix.os }}_node${{ matrix.node }}
-          parallel: true
+          token: ${{ secrets.CODECOV_TOKEN }}
       - name: Run Lint
         run: npm run lint --no-sort
       - name: Run Docs
@@ -56,7 +54,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Coveralls Finished
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.github_token }}
-        parallel-finished: true
+      run: echo "finish"

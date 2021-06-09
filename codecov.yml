@@ -1,0 +1,9 @@
+comment:
+  layout: "reach, diff, flags, files"
+coverage:
+  status:
+    project:
+      default:
+        # basic
+        target: auto
+        threshold: 1%

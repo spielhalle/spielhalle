@@ -14,7 +14,7 @@ export class SudokuSolverService {
         if (typeof Worker !== 'undefined') {
             // Create a new
             return new Promise((resolve: (arg: number[][][]) => void): void => {
-                const worker: Worker = new Worker('./sudoku-solver.worker', { name: 'solveSudokuWorker', type: 'module' });
+                const worker: Worker = new Worker(new URL('./sudoku-solver.worker', import.meta.url), { name: 'solveSudokuWorker', type: 'module' });
                 worker.onmessage = (evt: MessageEvent): void => {
                     resolve(evt.data);
                 };
