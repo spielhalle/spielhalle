@@ -30,7 +30,7 @@ export class SudokuBenchmarkComponent implements OnDestroy {
     public startTest(): void {
         this.calculating = true;
         const obs: Observable<SudokuBenchmarkMessage> = new Observable((sub: Subscriber<SudokuBenchmarkMessage>): TeardownLogic => {
-            const worker: Worker = new Worker('./sudoku-benchmark.worker', { name: 'benchmarkSudokuWorker', type: 'module' });
+            const worker: Worker = new Worker(new URL('./sudoku-benchmark.worker', import.meta.url), { name: 'benchmarkSudokuWorker', type: 'module' });
             worker.onmessage = (evt: MessageEvent): void => {
                 sub.next(evt.data);
                 if (evt.data.type === SudokuBenchmarkMessageType.RESULT) {

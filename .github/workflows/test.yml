@@ -8,7 +8,7 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
-        node: [10, 12, 14]
+        node: [12, 14]
         #os: [ubuntu-latest, windows-latest]
         os: [ubuntu-latest]
     steps:
@@ -35,7 +35,9 @@ jobs:
           npm ci
           npx lerna bootstrap --ci
       - name: Run Build
-        run: npm run build
+        run: |
+          npm run build
+          npx lerna run prerender:githubpages
       - name: Run Test
         run: npm run test:coverage --no-sort
       - name: Upload coverage to Codecov Monorepo
