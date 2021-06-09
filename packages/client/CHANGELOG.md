@@ -3,6 +3,87 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/spielhalle/spielhalle/compare/v0.4.1...v0.5.0) (2021-06-09)
+
+
+### Bug Fixes
+
+* **client:** bump @angular/core to 11.2.8 ([#884](https://github.com/spielhalle/spielhalle/issues/884)) ([7914be8](https://github.com/spielhalle/spielhalle/commit/7914be852d12982ef86d4c9b76cf6f4e8bd26256))
+* **client-ng:** extend root tsconfig ([6dcb0d0](https://github.com/spielhalle/spielhalle/commit/6dcb0d0be815ba57bc43619f85b5fac2e7dbfa77))
+* **deps:** bump @angular/core to 11.2.9 ([#904](https://github.com/spielhalle/spielhalle/issues/904)) ([0a03018](https://github.com/spielhalle/spielhalle/commit/0a0301876547366a4e5562c8a4a700d841bc4653))
+* **deps:** bump pixi.js to 6.0.0 ([#882](https://github.com/spielhalle/spielhalle/issues/882)) ([8080b33](https://github.com/spielhalle/spielhalle/commit/8080b336082b75af5a2aaee3bf740c683ceeb34d))
+* **deps:** update angular monorepo to v11.1.2 ([94cb4cb](https://github.com/spielhalle/spielhalle/commit/94cb4cb7ccfc25d911c3633c0a8fa25e334b1472))
+* **deps:** update angular monorepo to v11.2.0 ([9550d58](https://github.com/spielhalle/spielhalle/commit/9550d58fdb7c41a476a3a7a9e1ad67804849264d))
+* **deps:** update angular monorepo to v11.2.1 ([5eecab0](https://github.com/spielhalle/spielhalle/commit/5eecab04976ebf726f3a05f8bd9b739617c72e9a))
+* **deps:** update angular monorepo to v11.2.10 ([9f83caa](https://github.com/spielhalle/spielhalle/commit/9f83caab731e949149e203f13de5963e63694457))
+* **deps:** update angular monorepo to v11.2.11 ([d90b07a](https://github.com/spielhalle/spielhalle/commit/d90b07ac2534c28af01fdf5b0850bbe440aceaba))
+* **deps:** update angular monorepo to v11.2.12 ([7a89517](https://github.com/spielhalle/spielhalle/commit/7a895170e72bd43f804e730cea318d436155d014))
+* **deps:** update angular monorepo to v11.2.13 ([95ab707](https://github.com/spielhalle/spielhalle/commit/95ab707096ca26f01d19c400065b999d0c3eeda5))
+* **deps:** update angular monorepo to v11.2.14 ([7911ada](https://github.com/spielhalle/spielhalle/commit/7911ada08a045929fcb3c10d809c09c91be4f123))
+* **deps:** update angular monorepo to v11.2.2 ([75aeb46](https://github.com/spielhalle/spielhalle/commit/75aeb466df5ef526a118bf71892c2e4e7337c8ba))
+* **deps:** update angular monorepo to v11.2.3 ([98ea963](https://github.com/spielhalle/spielhalle/commit/98ea9634bf0de53585d02bd4fd7c0c26fde966f6))
+* **deps:** update angular monorepo to v11.2.4 ([2036740](https://github.com/spielhalle/spielhalle/commit/2036740be5fd00639b9eb6904c081144bff7d8be))
+* **deps:** update angular monorepo to v11.2.5 ([545abad](https://github.com/spielhalle/spielhalle/commit/545abada7d34bd646d09035d7d16c0fc86ef04a0))
+* **deps:** update angular to v12 ([#1018](https://github.com/spielhalle/spielhalle/issues/1018)) ([8fa1101](https://github.com/spielhalle/spielhalle/commit/8fa110123e677846db652bd9341d18c45500ea07))
+* **deps:** update angularmaterial monorepo to v11.1.2 ([#731](https://github.com/spielhalle/spielhalle/issues/731)) ([986e615](https://github.com/spielhalle/spielhalle/commit/986e61547c72fab1ba13a9d5f5da902bffdc1610))
+* **deps:** update angularmaterial monorepo to v11.2.0 ([823378a](https://github.com/spielhalle/spielhalle/commit/823378a5fac501159f75585b6e995fafdeca8cf5))
+* **deps:** update angularmaterial monorepo to v11.2.1 ([65ce320](https://github.com/spielhalle/spielhalle/commit/65ce320e966918138d0db9544bd87f6ca1953c0f))
+* **deps:** update angularmaterial monorepo to v11.2.10 ([260f0be](https://github.com/spielhalle/spielhalle/commit/260f0beed650c41ae171115f50a7f6a34188f186))
+* **deps:** update angularmaterial monorepo to v11.2.11 ([5c94ea5](https://github.com/spielhalle/spielhalle/commit/5c94ea54cb465c0a02e4770be9c205c65daa78e0))
+* **deps:** update angularmaterial monorepo to v11.2.12 ([c5f3442](https://github.com/spielhalle/spielhalle/commit/c5f3442931c7b4d60fe63273c52c8defcae7ef96))
+* **deps:** update angularmaterial monorepo to v11.2.13 ([274f887](https://github.com/spielhalle/spielhalle/commit/274f88724fbac4c1d7bd6ffab51e58e5207702f6))
+* **deps:** update angularmaterial monorepo to v11.2.2 ([6fdcf5e](https://github.com/spielhalle/spielhalle/commit/6fdcf5e52ff1ed6fa0bc96bdca7e5b7efb75bc02))
+* **deps:** update angularmaterial monorepo to v11.2.3 ([3da6ae8](https://github.com/spielhalle/spielhalle/commit/3da6ae834a9c432828c8164294e2e862caf59013))
+* **deps:** update angularmaterial monorepo to v11.2.4 ([03caa69](https://github.com/spielhalle/spielhalle/commit/03caa696eba0d0d6ab082175290bc95ff7677cab))
+* **deps:** update angularmaterial monorepo to v11.2.5 ([9232a37](https://github.com/spielhalle/spielhalle/commit/9232a374eeb1fff79f8bf5c93a7aa23f761515c0))
+* **deps:** update angularmaterial monorepo to v11.2.6 ([#855](https://github.com/spielhalle/spielhalle/issues/855)) ([6b9431f](https://github.com/spielhalle/spielhalle/commit/6b9431fa55fedde54a69f25c0257521cbd3d6121))
+* **deps:** update angularmaterial monorepo to v11.2.7 ([3dd7540](https://github.com/spielhalle/spielhalle/commit/3dd75409881360072e8c009e34548fed242b0373))
+* **deps:** update angularmaterial monorepo to v11.2.8 ([b23872c](https://github.com/spielhalle/spielhalle/commit/b23872c43f5d24950eef4d51a7ac3ca8073031a9))
+* **deps:** update angularmaterial monorepo to v11.2.9 ([ebe4e2b](https://github.com/spielhalle/spielhalle/commit/ebe4e2beac2e2e38bf20eff7647ef300ebadeeaf))
+* **deps:** update angularmaterial monorepo to v12.0.4 ([98b494a](https://github.com/spielhalle/spielhalle/commit/98b494af9d99b397a1840d954e5098f746803930))
+* **deps:** update dependency @donmahallem/sudoku to v0.1.2 ([9b3e0d2](https://github.com/spielhalle/spielhalle/commit/9b3e0d2f5638b534fe75f1613d548e9539b03e09))
+* **deps:** update dependency @donmahallem/sudoku to v0.1.3 ([00912d9](https://github.com/spielhalle/spielhalle/commit/00912d9581f90a90062ed888e7658348becbac8c))
+* **deps:** update dependency @donmahallem/sudoku to v0.1.4 ([151b0e4](https://github.com/spielhalle/spielhalle/commit/151b0e4c0fe61c92e0dbd8fdf467b9edb7b3fd99))
+* **deps:** update dependency @nguniversal/express-engine to v11.1.2 ([#737](https://github.com/spielhalle/spielhalle/issues/737)) ([16888c8](https://github.com/spielhalle/spielhalle/commit/16888c8b3bd10f71e6c2d9b18fdcc3d99caea21f))
+* **deps:** update dependency @nguniversal/express-engine to v11.2.0 ([#761](https://github.com/spielhalle/spielhalle/issues/761)) ([981e88f](https://github.com/spielhalle/spielhalle/commit/981e88f9847b677c667fd6a33007bdc752ab291c))
+* **deps:** update dependency @nguniversal/express-engine to v11.2.1 ([f2971dd](https://github.com/spielhalle/spielhalle/commit/f2971dddc0ded2e2b36467a07e2293bd03152e9a))
+* **deps:** update dependency @nguniversal/express-engine to v12 ([54688dd](https://github.com/spielhalle/spielhalle/commit/54688dd47108ea17bb70bce10b84907cae58019b))
+* **deps:** update dependency @nguniversal/express-engine to v12.0.1 ([b56cb14](https://github.com/spielhalle/spielhalle/commit/b56cb145e1f4a26637b798fb33b0b221a5974be3))
+* **deps:** update dependency core-js to v3.10.0 ([#875](https://github.com/spielhalle/spielhalle/issues/875)) ([5aaca3a](https://github.com/spielhalle/spielhalle/commit/5aaca3af0f5cf41da4392f4a252eaeaf96e1c9c5))
+* **deps:** update dependency core-js to v3.10.1 ([cbfffb9](https://github.com/spielhalle/spielhalle/commit/cbfffb92f6c340350af1d243a179ab3d6bd88a67))
+* **deps:** update dependency core-js to v3.10.2 ([c0357e9](https://github.com/spielhalle/spielhalle/commit/c0357e9f334b515c7b162a7c02a60ae49f717a13))
+* **deps:** update dependency core-js to v3.11.0 ([2a1b124](https://github.com/spielhalle/spielhalle/commit/2a1b1240aee5c4fd4b7286d77fff3f9053e1ae09))
+* **deps:** update dependency core-js to v3.11.1 ([eec4243](https://github.com/spielhalle/spielhalle/commit/eec4243ba9a668d0bba77a46aed17c5415e26554))
+* **deps:** update dependency core-js to v3.11.2 ([4e5485d](https://github.com/spielhalle/spielhalle/commit/4e5485d7d144a2daad026598e7efc3f730a0b4cb))
+* **deps:** update dependency core-js to v3.11.3 ([3b0866a](https://github.com/spielhalle/spielhalle/commit/3b0866afbc05bb9d60c91ba335bd393804db7578))
+* **deps:** update dependency core-js to v3.12.0 ([b1f3f00](https://github.com/spielhalle/spielhalle/commit/b1f3f00715e3b5881d9979d57ce985799f2614ee))
+* **deps:** update dependency core-js to v3.12.1 ([5afefec](https://github.com/spielhalle/spielhalle/commit/5afefec46b95ac720437a85e98bf89c00869319f))
+* **deps:** update dependency core-js to v3.13.0 ([d52e8cf](https://github.com/spielhalle/spielhalle/commit/d52e8cf1617d428addffb4600971f1c1bff497af))
+* **deps:** update dependency core-js to v3.13.1 ([315e104](https://github.com/spielhalle/spielhalle/commit/315e104c42c393a005065c48463a306fd8d0aaa0))
+* **deps:** update dependency core-js to v3.14.0 ([17a903f](https://github.com/spielhalle/spielhalle/commit/17a903f63c7afc977519e50c191618ea86d05b16))
+* **deps:** update dependency core-js to v3.9.0 ([1e975ea](https://github.com/spielhalle/spielhalle/commit/1e975ea8e0ff0d7fe7488a11475762e8d4795636))
+* **deps:** update dependency core-js to v3.9.1 ([44873a7](https://github.com/spielhalle/spielhalle/commit/44873a769c999c8cedc1de8128f4f38394fabac7))
+* **deps:** update dependency pixi.js to v5.3.8 ([e5827a5](https://github.com/spielhalle/spielhalle/commit/e5827a50c16b944687b287c7ae0f913ed7de4014))
+* **deps:** update dependency pixi.js to v5.3.9 ([43c80d0](https://github.com/spielhalle/spielhalle/commit/43c80d013888ca788eb761b1ec6a62615cd60bbc))
+* **deps:** update dependency pixi.js to v6.0.1 ([eca56d7](https://github.com/spielhalle/spielhalle/commit/eca56d7e9fe0a448d8d6a5d1e9c2709005b517c7))
+* **deps:** update dependency pixi.js to v6.0.2 ([2410045](https://github.com/spielhalle/spielhalle/commit/2410045dddf21c1a9150b671266808b7455e26ef))
+* **deps:** update dependency rxjs to v6.6.6 ([fa51cf9](https://github.com/spielhalle/spielhalle/commit/fa51cf9c87a1d46b93ee4959e2e1746c844f4a4c))
+* **deps:** update dependency rxjs to v6.6.7 ([55145d9](https://github.com/spielhalle/spielhalle/commit/55145d916f2cd0904cfeef0f5cac540c8349b315))
+* **deps:** update dependency rxjs to v7 ([62866b7](https://github.com/spielhalle/spielhalle/commit/62866b7262cc27581e72dd28145c88ae6596e49b))
+* **deps:** update dependency rxjs to v7.0.1 ([320c34d](https://github.com/spielhalle/spielhalle/commit/320c34d8c0978cda2ea2000bc1862e2784856050))
+* **deps:** update dependency rxjs to v7.1.0 ([7a73c7d](https://github.com/spielhalle/spielhalle/commit/7a73c7d32cc7903493215ecdb2c0b7fd50a50723))
+* **deps:** update dependency zone.js to v0.11.4 ([1bba8e4](https://github.com/spielhalle/spielhalle/commit/1bba8e4b3bfd50fd646c134f5bfc7504b9c0bb9f))
+
+
+### Features
+
+* **client:** use @donmahallem/sudoku ([#779](https://github.com/spielhalle/spielhalle/issues/779)) ([4a04fd2](https://github.com/spielhalle/spielhalle/commit/4a04fd2fcbe87b536979278fd6b0cd37dd9c7c13))
+
+
+
+
+
+
 ## [0.4.1](https://github.com/spielhalle/spielhalle/compare/v0.4.0...v0.4.1) (2021-02-02)
 
 
