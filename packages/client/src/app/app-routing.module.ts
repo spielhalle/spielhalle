@@ -18,6 +18,11 @@ const appRoutes: Routes = [
         path: 'sudoku',
     },
     {
+        // tslint:disable-next-line:typedef
+        loadChildren: () => import('./routes/tank-call/tank-call.module').then((m) => m.TankCallModule),
+        path: 'tank-call',
+    },
+    {
         component: NotFoundComponent,
         path: '**',
     },
@@ -29,9 +34,9 @@ const appRoutes: Routes = [
     ],
     imports: [
         RouterModule.forRoot(appRoutes, {
-    initialNavigation: 'enabled',
-    relativeLinkResolution: 'legacy',
-}),
+            initialNavigation: 'enabled',
+            relativeLinkResolution: 'legacy',
+        }),
     ],
 })
 export class AppRoutingModule { }
