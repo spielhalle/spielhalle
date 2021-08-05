@@ -130,18 +130,18 @@ export class TankGame extends Container {
             for (let i: number = this.projectileContainer.children.length - 1; i >= 0; i--) {
                 const pr: Projectile = this.projectileContainer.getChildAt(i) as Projectile;
                 pr.step(deltaT);
-                if (pr.destroyed) {
+                if (pr.projectileDestroyed) {
 
                 } else if (pr.y < this.landscape.getHeight(pr.x)) {
-                    pr.destroyed = true;
+                    pr.projectileDestroyed = true;
                     this.landscape.explodeAt(pr.x);
                     this.projectileContainer.removeChild(pr).destroy();
                     this.gravitateObjects();
                 } else if (pr.x < -20 || pr.x + 20 > this.width) {
-                    pr.destroyed = true;
+                    pr.projectileDestroyed = true;
                     this.projectileContainer.removeChild(pr).destroy();
                 } else if (pr.y < -20) {
-                    pr.destroyed = true;
+                    pr.projectileDestroyed = true;
                     this.projectileContainer.removeChild(pr).destroy();
                 } else {
                     for (let n: number = 0; n < this.numberContainer.children.length; n++) {
@@ -151,7 +151,7 @@ export class TankGame extends Container {
                             { x: pr.lastX, y: pr.lastY },
                             { x: num.x + ba.left, y: num.y + ba.top },
                             { x: num.x + ba.left, y: num.y + ba.bottom })) {
-                            pr.destroyed = true;
+                            pr.projectileDestroyed = true;
                             this.projectileContainer.removeChild(pr).destroy();
                             console.log('hit', num.num);
                             this.callNumber += num.num;
@@ -162,7 +162,7 @@ export class TankGame extends Container {
                             { x: pr.lastX, y: pr.lastY },
                             { x: num.x + ba.left, y: num.y + ba.top },
                             { x: num.x + ba.right, y: num.y + ba.top })) {
-                            pr.destroyed = true;
+                            pr.projectileDestroyed = true;
                             this.projectileContainer.removeChild(pr).destroy();
                             console.log('hit', num.num);
                             this.callNumber += num.num;
@@ -173,7 +173,7 @@ export class TankGame extends Container {
                             { x: pr.lastX, y: pr.lastY },
                             { x: num.x + ba.right, y: num.y + ba.top },
                             { x: num.x + ba.right, y: num.y + ba.bottom })) {
-                            pr.destroyed = true;
+                            pr.projectileDestroyed = true;
                             this.projectileContainer.removeChild(pr).destroy();
                             console.log('hit', num.num);
                             this.callNumber += num.num;
@@ -184,7 +184,7 @@ export class TankGame extends Container {
                             { x: pr.lastX, y: pr.lastY },
                             { x: num.x + ba.left, y: num.y + ba.bottom },
                             { x: num.x + ba.right, y: num.y + ba.bottom })) {
-                            pr.destroyed = true;
+                            pr.projectileDestroyed = true;
                             this.projectileContainer.removeChild(pr).destroy();
                             console.log('hit', num.num);
                             this.callNumber += num.num;
