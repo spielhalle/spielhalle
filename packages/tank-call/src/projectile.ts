@@ -24,7 +24,7 @@ export class Projectile extends Graphics {
     public lastX: number = 0;
     public lastY: number = 0;
     public velocity: Point = new Point();
-    public destroyed: boolean = false;
+    public projectileDestroyed: boolean = false;
 
     public step(delta: number): void {
         this.velocity.x = Math.min(Projectile.TERMINAL_VELOCITY, this.velocity.x + (Projectile.GRAVITY.x * delta));
