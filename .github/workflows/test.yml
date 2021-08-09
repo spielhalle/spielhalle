@@ -140,7 +140,7 @@ jobs:
   prerender_suite:
     needs: build_suite
     runs-on: ${{ matrix.os }}
-    name: Lint - ${{ matrix.os }} - Node ${{ matrix.node }}
+    name: Prerender - ${{ matrix.os }} - Node ${{ matrix.node }}
     timeout-minutes: 30
     strategy:
       max-parallel: 4
@@ -173,7 +173,7 @@ jobs:
           npm ci
           npx lerna bootstrap --ci
       - name: Run Prerender
-        run: npx lerna run prerender:githubpages
+        run: npx lerna run prerender:githubpages --stream
   docs_suite:
     needs: build_suite
     runs-on: ${{ matrix.os }}
