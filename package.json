@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "@donmahallem/rollup-config": "0.4.0",
+    "@donmahallem/rollup-config": "0.4.1",
     "@donmahallem/tslint-config": "0.2.0",
     "@rollup/plugin-commonjs": "20.0.0",
     "@rollup/plugin-json": "4.1.0",
@@ -22,7 +22,7 @@
     "lerna": "4.0.0",
     "mocha": "9.1.0",
     "nyc": "15.1.0",
-    "rollup": "2.56.2",
+    "rollup": "2.56.3",
     "sinon": "11.1.2",
     "ts-node": "10.2.1",
     "tslib": "2.3.1",
