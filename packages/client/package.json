@@ -52,7 +52,7 @@
     "@angular/router": "12.2.8",
     "@angular/service-worker": "12.2.8",
     "@donmahallem/sudoku": "0.2.1",
-    "@nguniversal/express-engine": "12.1.0",
+    "@nguniversal/express-engine": "12.1.1",
     "core-js": "3.18.1",
     "express": "4.17.1",
     "material-design-icons": "3.0.1",
