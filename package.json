@@ -4,7 +4,7 @@
   "devDependencies": {
     "@donmahallem/rollup-config": "0.4.4",
     "@donmahallem/tslint-config": "0.2.0",
-    "@rollup/plugin-commonjs": "20.0.0",
+    "@rollup/plugin-commonjs": "21.0.0",
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-node-resolve": "13.0.5",
     "@rollup/plugin-replace": "3.0.0",
