@@ -51,7 +51,7 @@
     "@angular/platform-server": "12.2.13",
     "@angular/router": "12.2.13",
     "@angular/service-worker": "12.2.13",
-    "@donmahallem/sudoku": "0.2.3",
+    "@donmahallem/sudoku": "0.2.4",
     "@nguniversal/express-engine": "13.0.1",
     "core-js": "3.19.1",
     "express": "4.17.1",
