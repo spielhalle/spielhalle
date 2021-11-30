@@ -13,7 +13,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '16'
+      - name: Patch NPM
+        run: |
+          npm install -g npm
       - name: Install Packages
         run: |
           npm ci
@@ -34,7 +37,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '16'
+      - name: Patch NPM
+        run: |
+          npm install -g npm
       - name: Install Packages
         run: |
           npm ci
