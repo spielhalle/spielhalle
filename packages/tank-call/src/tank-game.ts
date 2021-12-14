@@ -3,11 +3,12 @@
  * Source https://spielhalle.github.io/spielhalle/
  */
 
-import { Container } from '@pixi/display';
+import { Container, DisplayObject } from '@pixi/display';
 import { InteractionEvent } from '@pixi/interaction';
 import { IPointData, Point, Rectangle } from '@pixi/math';
 import { Text, TextStyle } from '@pixi/text';
 import { Ticker } from '@pixi/ticker';
+import { EventEmitter } from '@pixi/utils';
 import { Background } from './background';
 import { KeyListener } from './key-listener';
 import { Landscape } from './landscape';
@@ -83,11 +84,11 @@ export class TankGame extends Container {
         this.callText.position.x = this.width / 2;
         // this.callText.position.y = this.height - 60;
         // Invert because double inverted... bs
-        this.interactive = true;
-        this.on('pointertap', (tap: InteractionEvent): void => {
+        (this as DisplayObject).interactive = true;
+        (this as EventEmitter).on('pointertap', (tap: InteractionEvent): void => {
             this.spawnProjectile();
         });
-        this.on('pointermove', (tap: InteractionEvent): void => {
+        (this as EventEmitter).on('pointermove', (tap: InteractionEvent): void => {
             const p: IPointData = tap.data.getLocalPosition(this);
             const dX: number = p.x - this.tank.x;
             const dY: number = p.y - this.tank.y;
