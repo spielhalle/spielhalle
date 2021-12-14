@@ -16,21 +16,26 @@ module.exports = {
         extensions: [".tsx", ".ts", ".js"]
     },
 
-    plugins: [new HtmlWebpackPlugin({
-        title: "Tank Calling",
-        template: "src/index.html"
-    }),
-    new CopyWebpackPlugin({
-        patterns: [
-            {
-                from: 'src/assets',
-                to: "assets",
-                toType: "dir"
-            }
-        ]
-    })
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: "Tank Calling",
+            template: "src/index.html"
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: 'src/assets',
+                    to: "assets",
+                    toType: "dir"
+                }
+            ]
+        })
     ],
 
+    mode: 'development',
+    optimization: {
+        usedExports: true,
+    },
     module: {
         rules: [
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
