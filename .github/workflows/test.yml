@@ -13,22 +13,17 @@ jobs:
         os: [ubuntu-latest] #, windows-latest]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.0
         with:
           fetch-depth: 200
       - name: Setup Node
         uses: actions/setup-node@v2.5.0
         with:
           node-version: ${{ matrix.node }}
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
       - name: Setup Cache
         uses: actions/cache@v2.1.7
         with:
           path: |
-            ${{ steps.npm-cache.outputs.dir }}
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-node${{ matrix.node }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -56,22 +51,17 @@ jobs:
         os: [ubuntu-latest] #, windows-latest]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.0
         with:
           fetch-depth: 200
       - name: Setup Node
         uses: actions/setup-node@v2.5.0
         with:
           node-version: ${{ matrix.node }}
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
       - name: Setup Cache
         uses: actions/cache@v2.1.7
         with:
           path: |
-            ${{ steps.npm-cache.outputs.dir }}
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-node${{ matrix.node }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -95,7 +85,7 @@ jobs:
         uses: codecov/codecov-action@v2.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          flags: ${{ steps.flagname.outputs.flagname }}
+          flags: unit #${{ steps.flagname.outputs.flagname }}
           directory: ${{ matrix.package.location }}
           name: Test
           fail_ci_if_error: false
@@ -112,22 +102,17 @@ jobs:
         os: [ubuntu-latest] #, windows-latest]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.0
         with:
           fetch-depth: 200
       - name: Setup Node
         uses: actions/setup-node@v2.5.0
         with:
           node-version: ${{ matrix.node }}
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
       - name: Setup Cache
         uses: actions/cache@v2.1.7
         with:
           path: |
-            ${{ steps.npm-cache.outputs.dir }}
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-node${{ matrix.node }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -135,8 +120,14 @@ jobs:
         run: |
           npm ci
           npx lerna bootstrap --ci
-      - name: Run Lint
-        run: npx lerna run lint
+      - name: Download Build artifacts
+        uses: actions/download-artifact@v2.1.0
+        with:
+          name: build-${{matrix.os}}-${{matrix.node}}
+          path: ./packages
+      - name: Lint ALL Packages
+        run: |
+          npx lerna run lint
   prerender_suite:
     needs: build_suite
     runs-on: ${{ matrix.os }}
@@ -156,15 +147,10 @@ jobs:
         uses: actions/setup-node@v2.5.0
         with:
           node-version: ${{ matrix.node }}
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
       - name: Setup Cache
         uses: actions/cache@v2.1.7
         with:
           path: |
-            ${{ steps.npm-cache.outputs.dir }}
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-node${{ matrix.node }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -172,6 +158,11 @@ jobs:
         run: |
           npm ci
           npx lerna bootstrap --ci
+      - name: Download Build artifacts
+        uses: actions/download-artifact@v2.1.0
+        with:
+          name: build-${{matrix.os}}-${{matrix.node}}
+          path: ./packages
       - name: Run Prerender
         run: npx lerna run prerender:githubpages --stream
   docs_suite:
@@ -186,22 +177,17 @@ jobs:
         os: [ubuntu-latest] #, windows-latest]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.0
         with:
           fetch-depth: 200
       - name: Setup Node
         uses: actions/setup-node@v2.5.0
         with:
           node-version: ${{ matrix.node }}
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
       - name: Setup Cache
         uses: actions/cache@v2.1.7
         with:
           path: |
-            ${{ steps.npm-cache.outputs.dir }}
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-node${{ matrix.node }}-npm-${{ hashFiles('**/package-lock.json') }}
