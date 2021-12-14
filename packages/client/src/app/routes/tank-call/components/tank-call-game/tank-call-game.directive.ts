@@ -4,8 +4,9 @@
 
 import { isPlatformBrowser } from '@angular/common';
 import { Directive, ElementRef, Inject, OnChanges, OnDestroy, OnInit, PLATFORM_ID, SimpleChanges } from '@angular/core';
-import { TankGame } from '@spielhalle/tank-call';
 import { Application } from '@pixi/app';
+import { TankGame } from '@spielhalle/tank-call';
+
 @Directive({
     selector: 'canvas[appTankCallGame]',
 })
