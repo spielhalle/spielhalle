@@ -44,15 +44,6 @@
     },
     "devDependencies": {
         "@donmahallem/eslint-config": "0.5.1",
-        "@pixi/app": "6.2.0",
-        "@pixi/core": "6.2.0",
-        "@pixi/display": "6.2.0",
-        "@pixi/graphics": "6.2.0",
-        "@pixi/interaction": "6.2.0",
-        "@pixi/math": "6.2.0",
-        "@pixi/sprite": "6.2.0",
-        "@pixi/text": "6.2.0",
-        "@pixi/ticker": "6.2.0",
         "brfs": "2.0.2",
         "copy-webpack-plugin": "9.0.1",
         "eslint": "8.4.1",
@@ -68,15 +59,15 @@
         "webpack-cli": "4.9.1",
         "webpack-dev-server": "4.4.0"
     },
-    "peerDependencies": {
-        "@pixi/app": "^6.2.0",
-        "@pixi/core": "^6.2.0",
-        "@pixi/display": "^6.2.0",
-        "@pixi/graphics": "^.2.0",
-        "@pixi/interaction": "^6.2.0",
-        "@pixi/math": "^6.2.0",
-        "@pixi/sprite": "^6.2.0",
-        "@pixi/text": "^6.2.0",
-        "@pixi/ticker": "^6.2.0"
+    "dependencies": {
+        "@pixi/app": "~6.2.0",
+        "@pixi/core": "~6.2.0",
+        "@pixi/display": "~6.2.0",
+        "@pixi/graphics": "~6.2.0",
+        "@pixi/interaction": "~6.2.0",
+        "@pixi/math": "~6.2.0",
+        "@pixi/sprite": "~6.2.0",
+        "@pixi/text": "~6.2.0",
+        "@pixi/ticker": "~6.2.0"
     }
 }
