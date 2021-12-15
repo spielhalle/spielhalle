@@ -65,6 +65,7 @@
         "@pixi/math": "~6.2.0",
         "@pixi/sprite": "~6.2.0",
         "@pixi/text": "~6.2.0",
-        "@pixi/ticker": "~6.2.0"
+        "@pixi/ticker": "~6.2.0",
+        "@pixi/utils": "~6.2.0"
     }
 }
