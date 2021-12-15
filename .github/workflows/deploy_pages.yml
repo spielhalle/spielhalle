@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '12.x'
       - name: Setup Cache
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -35,7 +35,7 @@ jobs:
           npx lerna run build
           cp ./packages/client/dist/browser/index.html ./packages/client/dist/browser/404.html
       - name: Install SSH Client
-        uses: webfactory/ssh-agent@v0.5.2
+        uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.APP_DEPLOY_KEY }}
       - name: Deploy 🚀
@@ -60,7 +60,7 @@ jobs:
         with:
           node-version: '12.x'
       - name: Setup Cache
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -75,7 +75,7 @@ jobs:
           npx lerna run docs
           node .github/workflows/prepare_docs_deploy.js
       - name: Install SSH Client 🔑
-        uses: webfactory/ssh-agent@v0.5.2
+        uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.DOCS_DEPLOY_KEY }}
       - name: Deploy 🚀

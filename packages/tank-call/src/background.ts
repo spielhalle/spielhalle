@@ -1,5 +1,6 @@
-/*!
- * Source https://github.com/spielhalle/spielhalle Package: tank-call
+/*
+ * Package @spielhalle/tank-call
+ * Source https://spielhalle.github.io/spielhalle/
  */
 
 import { Texture } from '@pixi/core';
@@ -7,7 +8,6 @@ import { Container } from '@pixi/display';
 import { Sprite } from '@pixi/sprite';
 
 export class Background extends Container {
-
     private gradient: Sprite;
     constructor(width: number, height: number) {
         super();

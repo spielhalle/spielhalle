@@ -1,13 +1,13 @@
-/*!
- * Source https://github.com/spielhalle/spielhalle Package: tank-call
+/*
+ * Package @spielhalle/tank-call
+ * Source https://spielhalle.github.io/spielhalle/
  */
 
 import { Container } from '@pixi/display';
 import { Text, TextStyle } from '@pixi/text';
 
 export class TargetNumber extends Container {
-
-    public mNum: number = 0;
+    public mNum = 0;
     private text: Text;
     private textStyle: TextStyle = new TextStyle({
         fill: '#0000FF', // gradient

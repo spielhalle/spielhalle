@@ -1,17 +1,20 @@
-/*!
- * Source https://github.com/spielhalle/spielhalle Package: tank-call
+/*
+ * Package @spielhalle/tank-call
+ * Source https://spielhalle.github.io/spielhalle/
  */
 
 export class KeyListener {
-    private isDown: boolean = false;
-    private isUp: boolean = true;
+    private isDown = false;
+    private isUp = true;
     public readonly code: number;
     press: () => void;
     release: () => void;
 
     public static create(keyCode: number, down?: () => void, up?: () => void): KeyListener {
         const keyListener: KeyListener = new KeyListener(keyCode);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         window.addEventListener('keydown', keyListener.downHandler.bind(keyListener), false);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         window.addEventListener('keyup', keyListener.upHandler.bind(keyListener), false);
         if (down) {
             keyListener.press = down;

@@ -1,5 +1,6 @@
-/*!
- * Source https://github.com/spielhalle/spielhalle Package: tank-call
+/*
+ * Package @spielhalle/tank-call
+ * Source https://spielhalle.github.io/spielhalle/
  */
 
 import { Graphics } from '@pixi/graphics';
@@ -8,7 +9,7 @@ import { Point } from '@pixi/math';
 export class Projectile extends Graphics {
     constructor() {
         super();
-        this.beginFill(0xFF0000);
+        this.beginFill(0xff0000);
         this.moveTo(-4, 2);
         this.lineTo(2, 2);
         this.lineTo(4, 0);
@@ -21,18 +22,18 @@ export class Projectile extends Graphics {
     private static readonly GRAVITY: Point = new Point(0, -0.05);
     private static readonly TERMINAL_VELOCITY: number = 10;
 
-    public lastX: number = 0;
-    public lastY: number = 0;
+    public lastX = 0;
+    public lastY = 0;
     public velocity: Point = new Point();
-    public destroyed: boolean = false;
+    public projectileDestroyed = false;
 
     public step(delta: number): void {
-        this.velocity.x = Math.min(Projectile.TERMINAL_VELOCITY, this.velocity.x + (Projectile.GRAVITY.x * delta));
-        this.velocity.y = Math.min(Projectile.TERMINAL_VELOCITY, this.velocity.y + (Projectile.GRAVITY.y * delta));
+        this.velocity.x = Math.min(Projectile.TERMINAL_VELOCITY, this.velocity.x + Projectile.GRAVITY.x * delta);
+        this.velocity.y = Math.min(Projectile.TERMINAL_VELOCITY, this.velocity.y + Projectile.GRAVITY.y * delta);
         this.lastX = this.x;
         this.lastY = this.y;
-        this.x = this.x + (delta * this.velocity.x);
-        this.y = this.y + (delta * this.velocity.y);
+        this.x = this.x + delta * this.velocity.x;
+        this.y = this.y + delta * this.velocity.y;
         if (this.velocity.x === 0) {
             this.rotation = this.velocity.y >= 0 ? 0 : Math.PI;
         } else {

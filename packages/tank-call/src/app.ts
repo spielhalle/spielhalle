@@ -1,11 +1,10 @@
-/*!
- * Source https://github.com/spielhalle/spielhalle Package: tank-call
+/*
+ * Package @spielhalle/tank-call
+ * Source https://spielhalle.github.io/spielhalle/
  */
 
-import { Application } from 'pixi.js';
-import {
-    TankGame,
-} from './tank-game';
+import { Application } from '@pixi/app';
+import { TankGame } from './tank-game';
 
 // The application will create a renderer using WebGL, if possible,
 // with a fallback to a canvas render. It will also setup the ticker

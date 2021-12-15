@@ -1,7 +1,6 @@
-/*!
- * Source https://github.com/spielhalle/spielhalle Package: tank-call
+/*
+ * Package @spielhalle/tank-call
+ * Source https://spielhalle.github.io/spielhalle/
  */
 
-export {
-    TankGame,
-} from './tank-game';
+export { TankGame } from './tank-game';
