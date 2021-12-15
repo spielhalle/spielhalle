@@ -67,5 +67,9 @@
         "@pixi/text": "~6.2.0",
         "@pixi/ticker": "~6.2.0",
         "@pixi/utils": "~6.2.0"
+    },
+    "engines": {
+        "npm": ">=8.0.0",
+        "node": ">=14.0.0"
     }
 }
