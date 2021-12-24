@@ -2,4 +2,4 @@
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/client
  */
 
-export * from './sudoku-field.component';
+export * from './sudoku-field.directive';

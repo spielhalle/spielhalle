@@ -4,3 +4,4 @@
  */
 
 export { SudokuBoardGame } from './sudoku-board';
+export { SudokuBoardGameApp } from './sudoku-board-app';

@@ -10,7 +10,7 @@ import { Text, TextStyle } from '@pixi/text';
 import { Ticker } from '@pixi/ticker';
 import { EventEmitter } from '@pixi/utils';
 import { Background } from './background';
-import { KeyListener } from './key-listener';
+import { BarrelExplosion } from './barrel-explosion';
 import { Landscape } from './landscape';
 import { Projectile } from './projectile';
 import { Tank } from './tank';
@@ -26,6 +26,8 @@ export class TankGame extends Container {
     private initiated: boolean;
     private projectileContainer: Container = new Container();
     private numberContainer: Container = new Container();
+    private animatedObjects: Container = new Container();
+    public static readonly DELTA_SUB_STEPS: number = 10;
     private powerText: Text;
     private callText: Text;
     private callTextStyle: TextStyle = new TextStyle({
@@ -42,7 +44,7 @@ export class TankGame extends Container {
         stroke: '#4a1850',
         strokeThickness: 5,
     });
-    private power = 10;
+    private power = 5;
     private powerTextStyle: TextStyle = new TextStyle({
         fill: '#FFFFFF', // gradient
         fontFamily: 'Arial',
@@ -58,25 +60,15 @@ export class TankGame extends Container {
         this.init();
     }
 
+    public addPower(p: number): void {
+        this.power = Math.max(0, this.power + p);
+        this.updatePowerText();
+    }
+
     private init(): void {
         if (this.initiated) {
             throw new Error('Already initiated');
         }
-        KeyListener.create(87, undefined, (): void => {
-            this.power = this.power + 0.1;
-            this.updatePowerText();
-        });
-        KeyListener.create(87, undefined, (): void => {
-            this.power = this.power + 0.1;
-            this.updatePowerText();
-        });
-        KeyListener.create(82, undefined, (): void => {
-            this.resetGame();
-        });
-        KeyListener.create(83, undefined, (): void => {
-            this.power = Math.max(0, this.power - 0.1);
-            this.updatePowerText();
-        });
         this.powerText = new Text('Power: 0', this.powerTextStyle);
         this.powerText.scale.y = -1;
         this.callText = new Text('..', this.callTextStyle);
@@ -116,93 +108,112 @@ export class TankGame extends Container {
         for (let i = 0; i < 9; i++) {
             this.spawnTargetNumber(i);
         }
+        this.addChild(this.animatedObjects);
         const ticker: Ticker = Ticker.shared;
         ticker.add((deltaT: number): void => {
-            for (let i: number = this.projectileContainer.children.length - 1; i >= 0; i--) {
-                const pr: Projectile = this.projectileContainer.getChildAt(i) as Projectile;
-                pr.step(deltaT);
-                if (pr.projectileDestroyed) {
-                    // ignore
-                } else if (pr.y < this.landscape.getHeight(pr.x)) {
-                    pr.projectileDestroyed = true;
-                    this.landscape.explodeAt(pr.x);
-                    this.projectileContainer.removeChild(pr).destroy();
-                    this.gravitateObjects();
-                } else if (pr.x < -20 || pr.x + 20 > this.width) {
-                    pr.projectileDestroyed = true;
-                    this.projectileContainer.removeChild(pr).destroy();
-                } else if (pr.y < -20) {
-                    pr.projectileDestroyed = true;
-                    this.projectileContainer.removeChild(pr).destroy();
-                } else {
-                    for (let n = 0; n < this.numberContainer.children.length; n++) {
-                        const num: TargetNumber = this.numberContainer.getChildAt(n) as TargetNumber;
-                        const ba: Rectangle = num.getLocalBounds();
-                        if (
-                            this.lineIntersect(
-                                pr,
-                                { x: pr.lastX, y: pr.lastY },
-                                { x: num.x + ba.left, y: num.y + ba.top },
-                                { x: num.x + ba.left, y: num.y + ba.bottom }
-                            )
-                        ) {
-                            pr.projectileDestroyed = true;
-                            this.projectileContainer.removeChild(pr).destroy();
-                            console.log('hit', num.num);
-                            this.callNumber += num.num;
-                            this.updateCallText();
-                            this.relocateNumber(num);
-                            break;
-                        } else if (
-                            this.lineIntersect(
-                                pr,
-                                { x: pr.lastX, y: pr.lastY },
-                                { x: num.x + ba.left, y: num.y + ba.top },
-                                { x: num.x + ba.right, y: num.y + ba.top }
-                            )
-                        ) {
-                            pr.projectileDestroyed = true;
-                            this.projectileContainer.removeChild(pr).destroy();
-                            console.log('hit', num.num);
-                            this.callNumber += num.num;
-                            this.updateCallText();
-                            this.relocateNumber(num);
-                            break;
-                        } else if (
-                            this.lineIntersect(
-                                pr,
-                                { x: pr.lastX, y: pr.lastY },
-                                { x: num.x + ba.right, y: num.y + ba.top },
-                                { x: num.x + ba.right, y: num.y + ba.bottom }
-                            )
-                        ) {
-                            pr.projectileDestroyed = true;
-                            this.projectileContainer.removeChild(pr).destroy();
-                            console.log('hit', num.num);
-                            this.callNumber += num.num;
-                            this.updateCallText();
-                            this.relocateNumber(num);
-                            break;
-                        } else if (
-                            this.lineIntersect(
-                                pr,
-                                { x: pr.lastX, y: pr.lastY },
-                                { x: num.x + ba.left, y: num.y + ba.bottom },
-                                { x: num.x + ba.right, y: num.y + ba.bottom }
-                            )
-                        ) {
-                            pr.projectileDestroyed = true;
-                            this.projectileContainer.removeChild(pr).destroy();
-                            console.log('hit', num.num);
-                            this.callNumber += num.num;
-                            this.updateCallText();
-                            this.relocateNumber(num);
-                            break;
-                        }
+            ///console.log(deltaT / (settings.TARGET_FPMS || 1))
+            for (let i: number = this.animatedObjects.children.length - 1; i >= 0; i--) {
+                const animObj: BarrelExplosion = this.animatedObjects.getChildAt(i) as BarrelExplosion;
+                animObj.step(deltaT);
+            }
+
+            for (let deltaSubStep: number = 1; deltaSubStep <= TankGame.DELTA_SUB_STEPS; deltaSubStep++) {
+                const deltaS: number = deltaT / TankGame.DELTA_SUB_STEPS * deltaSubStep;
+                for (let i: number = this.projectileContainer.children.length - 1; i >= 0; i--) {
+                    const pr: Projectile = this.projectileContainer.getChildAt(i) as Projectile;
+                    if (pr.destroyed || pr.projectileDestroyed) {
+                        break;
                     }
+
+                    pr.step(deltaS);
+                    this.handleProjectileStep(pr);
                 }
             }
         });
+    }
+
+    private handleProjectileStep(pr: Projectile) {
+
+        if (pr.projectileDestroyed) {
+            return
+        } else if (pr.y < this.landscape.getHeight(pr.x)) {
+            pr.projectileDestroyed = true;
+            this.landscape.explodeAt(pr.x);
+            this.projectileContainer.removeChild(pr).destroy();
+            this.gravitateObjects();
+        } else if (pr.x < -20 || pr.x + 20 > this.width) {
+            pr.projectileDestroyed = true;
+            this.projectileContainer.removeChild(pr).destroy();
+        } else if (pr.y < -20) {
+            pr.projectileDestroyed = true;
+            this.projectileContainer.removeChild(pr).destroy();
+        } else {
+            for (let n = 0; n < this.numberContainer.children.length; n++) {
+                const num: TargetNumber = this.numberContainer.getChildAt(n) as TargetNumber;
+                const ba: Rectangle = num.getLocalBounds();
+                if (
+                    this.lineIntersect(
+                        pr,
+                        { x: pr.lastX, y: pr.lastY },
+                        { x: num.x + ba.left, y: num.y + ba.top },
+                        { x: num.x + ba.left, y: num.y + ba.bottom }
+                    )
+                ) {
+                    pr.projectileDestroyed = true;
+                    this.projectileContainer.removeChild(pr).destroy();
+                    console.log('hit', num.num);
+                    this.callNumber += num.num;
+                    this.updateCallText();
+                    this.relocateNumber(num);
+                    break;
+                } else if (
+                    this.lineIntersect(
+                        pr,
+                        { x: pr.lastX, y: pr.lastY },
+                        { x: num.x + ba.left, y: num.y + ba.top },
+                        { x: num.x + ba.right, y: num.y + ba.top }
+                    )
+                ) {
+                    pr.projectileDestroyed = true;
+                    this.projectileContainer.removeChild(pr).destroy();
+                    console.log('hit', num.num);
+                    this.callNumber += num.num;
+                    this.updateCallText();
+                    this.relocateNumber(num);
+                    break;
+                } else if (
+                    this.lineIntersect(
+                        pr,
+                        { x: pr.lastX, y: pr.lastY },
+                        { x: num.x + ba.right, y: num.y + ba.top },
+                        { x: num.x + ba.right, y: num.y + ba.bottom }
+                    )
+                ) {
+                    pr.projectileDestroyed = true;
+                    this.projectileContainer.removeChild(pr).destroy();
+                    console.log('hit', num.num);
+                    this.callNumber += num.num;
+                    this.updateCallText();
+                    this.relocateNumber(num);
+                    break;
+                } else if (
+                    this.lineIntersect(
+                        pr,
+                        { x: pr.lastX, y: pr.lastY },
+                        { x: num.x + ba.left, y: num.y + ba.bottom },
+                        { x: num.x + ba.right, y: num.y + ba.bottom }
+                    )
+                ) {
+                    pr.projectileDestroyed = true;
+                    this.projectileContainer.removeChild(pr).destroy();
+                    console.log('hit', num.num);
+                    this.callNumber += num.num;
+                    this.updateCallText();
+                    this.relocateNumber(num);
+                    break;
+                }
+            }
+        }
     }
 
     private gravitateObjects(): void {
@@ -214,7 +225,7 @@ export class TankGame extends Container {
         }
     }
 
-    private resetGame(): void {
+    public resetGame(): void {
         this.callNumber = '';
         this.updateCallText();
         for (let n: number = this.projectileContainer.children.length - 1; n >= 0; n--) {
@@ -235,7 +246,6 @@ export class TankGame extends Container {
             d.x = Math.round(Math.random() * this.gameWidth);
             for (let i = 0; i < this.numberContainer.children.length; i++) {
                 if (this.numberContainer.getChildAt(i) === d) {
-                    console.log('eq');
                     continue;
                 } else if (Math.abs(d.x - this.numberContainer.getChildAt(i).x) < 15) {
                     t = true;
@@ -257,7 +267,7 @@ export class TankGame extends Container {
         return s >= 0 && s <= 1 && t >= 0 && t <= 1;
     }
 
-    private updatePowerText(): void {
+    public updatePowerText(): void {
         this.powerText.text = `Power: ${this.power}`;
         this.powerText.pivot.y = this.powerText.height;
     }
@@ -270,15 +280,25 @@ export class TankGame extends Container {
     }
 
     public spawnProjectile(): void {
+        const absoluteBarrelAngle: number = this.tank.rotation + this.tank.turretAngle;
         const pr: Projectile = new Projectile();
-        const pp: Point = this.toLocal(new Point(0, 10), this.tank);
-        pr.x = pp.x;
-        pr.y = pp.y;
+        const barrelStart: Point = this.toLocal(new Point(0, 10), this.tank);
+        // Place at Barrel end
+        barrelStart.x += Tank.BARREL_LENGTH * Math.cos(absoluteBarrelAngle);
+        barrelStart.y += Tank.BARREL_LENGTH * Math.sin(absoluteBarrelAngle);
+        pr.x = barrelStart.x;
+        pr.y = barrelStart.y;
         pr.lastX = this.tank.x;
         pr.lastY = this.tank.y;
-        pr.velocity.y = Math.sin(this.tank.rotation + this.tank.turretAngle) * this.power;
-        pr.velocity.x = Math.cos(this.tank.rotation + this.tank.turretAngle) * this.power;
+        pr.velocity.y = Math.sin(absoluteBarrelAngle) * this.power;
+        pr.velocity.x = Math.cos(absoluteBarrelAngle) * this.power;
+        console.log(pr.velocity);
         this.projectileContainer.addChild(pr);
+        // Spawn explosion
+        const exp: BarrelExplosion = new BarrelExplosion();
+        exp.rotation = absoluteBarrelAngle;
+        exp.position.set(pr.x, pr.y);
+        this.animatedObjects.addChild(exp);
     }
 
     public spawnTargetNumber(num = 0): TargetNumber {
@@ -305,5 +325,9 @@ export class TankGame extends Container {
         pL.y = this.landscape.getHeight(pL.x);
         pR.y = this.landscape.getHeight(pR.x);
         this.tank.rotation = Math.tanh((pR.y - pL.y) / (pR.x - pL.x));
+    }
+
+    public increaseTankAngle(p: number): void {
+        this.tank.turretAngle += p;
     }
 }

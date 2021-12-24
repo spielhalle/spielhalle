@@ -2,7 +2,7 @@
     "name": "@spielhalle/tank-call",
     "version": "0.5.0",
     "description": "A tank call library",
-    "module": "dist/esm/index.js",
+    "module": "dist/esm/index.mjs",
     "types": "dist/types/index.d.ts",
     "private": false,
     "scripts": {
@@ -64,6 +64,7 @@
         "@pixi/graphics": "~6.2.0",
         "@pixi/interaction": "~6.2.0",
         "@pixi/math": "~6.2.0",
+        "@pixi/math-extras": "~6.2.0",
         "@pixi/runner": "~6.2.0",
         "@pixi/settings": "~6.2.0",
         "@pixi/sprite": "~6.2.0",
@@ -71,6 +72,7 @@
         "@pixi/ticker": "~6.2.0",
         "@pixi/utils": "~6.2.0"
     },
+    "type": "module",
     "engines": {
         "npm": ">=8.0.0",
         "node": ">=14.0.0"

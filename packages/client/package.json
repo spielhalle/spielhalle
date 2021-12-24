@@ -16,7 +16,10 @@
     "build:githubpages": "ng build --aot --prod --configuration=production,githubpages",
     "prerender": "ng run spielhalle:prerender",
     "prerender:githubpages": "ng run spielhalle:prerender --configuration=production,githubpages",
-    "build:pug": "pug ./src --doctype html"
+    "build:pug": "pug ./src --doctype html",
+    "build:ssr": "ng build && ng run spielhalle:server",
+    "dev:ssr": "ng run spielhalle:serve-ssr",
+    "bundle-analyze": "webpack-bundle-analyzer ./dist/browser/stats.json"
   },
   "publishConfig": {
     "access": "public"
@@ -56,10 +59,10 @@
     "@pixi/app": "~6.2.0",
     "@spielhalle/sudoku-board": "^0.1.0",
     "@spielhalle/tank-call": "^0.5.0",
+    "async-mutex": "^0.3.2",
     "core-js": "3.20.0",
     "express": "4.17.1",
     "material-design-icons": "3.0.1",
-    "pixi.js": "^6.2.0",
     "rxjs": "7.4.0",
     "zone.js": "~0.11.4"
   },
@@ -93,6 +96,7 @@
     "ts-node": "10.4.0",
     "tslib": "2.3.1",
     "tslint": "6.1.3",
+    "webpack-bundle-analyzer": "4.5.0",
     "webpack-cli": "4.9.1"
   },
   "engines": {

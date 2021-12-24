@@ -4,3 +4,4 @@
  */
 
 export { TankGame } from './tank-game';
+export { TankGameApp } from './tank-game-app';

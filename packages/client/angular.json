@@ -138,8 +138,10 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "bundleDependencies": false,
               "sourceMap": false,
-              "optimization": true
+              "optimization": true,
+              "statsJson": true
             }
           },
           "defaultConfiguration": ""

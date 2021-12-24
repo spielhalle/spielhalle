@@ -10,8 +10,14 @@ import { Text, TextStyle } from '@pixi/text';
 export class SudokuBoardGame extends Container {
     public readonly stage: Container;
     public readonly textLayer: Container;
-    public constructor() {
+    public readonly gameWidth: number;
+    public readonly gameHeight: number;
+    constructor(width: number, height: number) {
         super();
+        this.stage = new Container();
+        this.textLayer = new Container();
+        this.gameHeight = height;
+        this.gameWidth = width;
         this.init();
     }
     private init(): void {
