@@ -6,16 +6,15 @@
 export class KeyListener {
     private isDown = false;
     private isUp = true;
-    public readonly code: number;
     press: () => void;
     release: () => void;
 
-    public static create(keyCode: number, down?: () => void, up?: () => void): KeyListener {
-        const keyListener: KeyListener = new KeyListener(keyCode);
+    public static create(parent: EventTarget, keyCode: string, down?: () => void, up?: () => void): KeyListener {
+        const keyListener: KeyListener = new KeyListener(parent, keyCode);
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        window.addEventListener('keydown', keyListener.downHandler.bind(keyListener), false);
+        parent.addEventListener('keydown', keyListener.downHandler.bind(keyListener), false);
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        window.addEventListener('keyup', keyListener.upHandler.bind(keyListener), false);
+        parent.addEventListener('keyup', keyListener.upHandler.bind(keyListener), false);
         if (down) {
             keyListener.press = down;
         }
@@ -25,12 +24,11 @@ export class KeyListener {
         return keyListener;
     }
 
-    private constructor(code: number) {
-        this.code = code;
-    }
+    private constructor(public readonly eventTarget: EventTarget, public readonly key: string) {}
 
     private downHandler(event: KeyboardEvent): void {
-        if (event.keyCode === this.code) {
+        console.log(event.key, event.type);
+        if (event.key === this.key) {
             if (this.isUp && this.press) this.press();
             this.isDown = true;
             this.isUp = false;
@@ -38,11 +36,19 @@ export class KeyListener {
         }
     }
     private upHandler(event: KeyboardEvent): void {
-        if (event.keyCode === this.code) {
+        console.log(event.key, event.type);
+        if (event.key === this.key) {
             if (this.isDown && this.release) this.release();
             this.isDown = false;
             this.isUp = true;
             event.preventDefault();
         }
+    }
+
+    public remove() {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        this.eventTarget.removeEventListener('keydown', this.downHandler.bind(this));
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        this.eventTarget.removeEventListener('keyup', this.upHandler.bind(this));
     }
 }

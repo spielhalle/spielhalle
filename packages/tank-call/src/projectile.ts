@@ -5,6 +5,7 @@
 
 import { Graphics } from '@pixi/graphics';
 import { Point } from '@pixi/math';
+import '@pixi/math-extras';
 
 export class Projectile extends Graphics {
     constructor() {
@@ -20,7 +21,7 @@ export class Projectile extends Graphics {
     }
 
     private static readonly GRAVITY: Point = new Point(0, -0.05);
-    private static readonly TERMINAL_VELOCITY: number = 10;
+    private static readonly TERMINAL_VELOCITY: number = 100;
 
     public lastX = 0;
     public lastY = 0;
@@ -30,6 +31,8 @@ export class Projectile extends Graphics {
     public step(delta: number): void {
         this.velocity.x = Math.min(Projectile.TERMINAL_VELOCITY, this.velocity.x + Projectile.GRAVITY.x * delta);
         this.velocity.y = Math.min(Projectile.TERMINAL_VELOCITY, this.velocity.y + Projectile.GRAVITY.y * delta);
+        //const totalVelocity:number=this.velocity.magnitude();
+        this.velocity.multiplyScalar(0.95 * delta);
         this.lastX = this.x;
         this.lastY = this.y;
         this.x = this.x + delta * this.velocity.x;
