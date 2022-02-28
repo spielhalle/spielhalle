@@ -1,9 +1,14 @@
-import { Application, IApplicationOptions } from "@pixi/app"
-import { BatchRenderer, Renderer } from "@pixi/core";
-import { IDestroyOptions } from "@pixi/display";
-import { TickerPlugin } from "@pixi/ticker";
-import { Input, InputState } from "./inputs";
-import { TankGame } from "./tank-game";
+/*
+ * Package @spielhalle/tank-call
+ * Source https://spielhalle.github.io/spielhalle/
+ */
+
+import { Application, IApplicationOptions } from '@pixi/app'
+import { BatchRenderer, Renderer } from '@pixi/core';
+import { IDestroyOptions } from '@pixi/display';
+import { TickerPlugin } from '@pixi/ticker';
+import { Input, InputState } from './inputs';
+import { TankGame } from './tank-game';
 
 Application.registerPlugin(TickerPlugin)
 Renderer.registerPlugin('batch', BatchRenderer)
@@ -14,8 +19,8 @@ export class TankGameApp extends Application {
     public static readonly STOP_THRESHOLD = 0.0001;
     public readonly tankGame: TankGame;
     private readonly inp: Input;
-    private alreadyFired: boolean = false;
-    private powerVelocity: number = 0;
+    private alreadyFired = false;
+    private powerVelocity = 0;
     public constructor(opts?: IApplicationOptions) {
         super(opts);
         this.tankGame = new TankGame(this.view.width, this.view.height);

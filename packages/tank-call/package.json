@@ -72,7 +72,10 @@
         "@pixi/ticker": "~6.2.0",
         "@pixi/utils": "~6.2.0"
     },
-    "type": "module",
+    "exports": {
+        "import": "./dist/esm/index.mjs",
+        "require": null
+    },
     "engines": {
         "npm": ">=8.0.0",
         "node": ">=14.0.0"

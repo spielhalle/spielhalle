@@ -117,7 +117,7 @@ export class TankGame extends Container {
                 animObj.step(deltaT);
             }
 
-            for (let deltaSubStep: number = 1; deltaSubStep <= TankGame.DELTA_SUB_STEPS; deltaSubStep++) {
+            for (let deltaSubStep = 1; deltaSubStep <= TankGame.DELTA_SUB_STEPS; deltaSubStep++) {
                 const deltaS: number = deltaT / TankGame.DELTA_SUB_STEPS * deltaSubStep;
                 for (let i: number = this.projectileContainer.children.length - 1; i >= 0; i--) {
                     const pr: Projectile = this.projectileContainer.getChildAt(i) as Projectile;

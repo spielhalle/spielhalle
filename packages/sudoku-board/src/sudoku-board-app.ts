@@ -1,12 +1,16 @@
-import { Application, IApplicationOptions } from "@pixi/app"
-import { BatchRenderer, Renderer } from "@pixi/core";
-import { TickerPlugin } from "@pixi/ticker";
-import { SudokuBoardGame } from "./sudoku-board";
+/*
+ * Package @spielhalle/sudoku-board
+ * Source https://spielhalle.github.io/spielhalle/
+ */
 
-Application.registerPlugin(TickerPlugin)
-Renderer.registerPlugin('batch', BatchRenderer)
+import { Application, IApplicationOptions } from '@pixi/app';
+import { BatchRenderer, Renderer } from '@pixi/core';
+import { TickerPlugin } from '@pixi/ticker';
+import { SudokuBoardGame } from './sudoku-board';
+
+Application.registerPlugin(TickerPlugin);
+Renderer.registerPlugin('batch', BatchRenderer);
 export class SudokuBoardGameApp extends Application {
-
     public readonly board: SudokuBoardGame;
     public constructor(opts?: IApplicationOptions) {
         super(opts);

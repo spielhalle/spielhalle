@@ -15,9 +15,9 @@ export class BarrelExplosion extends Graphics {
     public static readonly MIN_RADIUS: number = 0.05;
     public static readonly MAX_RADIUS: number = 1;
     public static readonly FADE_START: number = 0.6;
-    private progress: number = 0;
+    private progress = 0;
 
-    public redraw(progress: number = 0): void {
+    public redraw(progress = 0): void {
         const sineProgress: number = 1 - Math.sin(Math.PI * progress);
         const explosionColor: number = rgb2hex([1, sineProgress, progress < 0.5 ? 0 : sineProgress]);
         const fadeProgress: number = progress >= BarrelExplosion.FADE_START ?
