@@ -118,7 +118,7 @@ export class TankGame extends Container {
             }
 
             for (let deltaSubStep = 1; deltaSubStep <= TankGame.DELTA_SUB_STEPS; deltaSubStep++) {
-                const deltaS: number = deltaT / TankGame.DELTA_SUB_STEPS * deltaSubStep;
+                const deltaS: number = (deltaT / TankGame.DELTA_SUB_STEPS) * deltaSubStep;
                 for (let i: number = this.projectileContainer.children.length - 1; i >= 0; i--) {
                     const pr: Projectile = this.projectileContainer.getChildAt(i) as Projectile;
                     if (pr.destroyed || pr.projectileDestroyed) {
@@ -133,9 +133,8 @@ export class TankGame extends Container {
     }
 
     private handleProjectileStep(pr: Projectile) {
-
         if (pr.projectileDestroyed) {
-            return
+            return;
         } else if (pr.y < this.landscape.getHeight(pr.x)) {
             pr.projectileDestroyed = true;
             this.landscape.explodeAt(pr.x);

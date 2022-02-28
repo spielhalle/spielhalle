@@ -35,8 +35,6 @@ export class SudokuBoardDirective extends AbstractPixiRenderDirective<SudokuBoar
         this.sudokuService.setBoxSize(size);
     }
 
-
-
     public test(k: MouseEvent): void {
         // const x: number = Math.floor(k.offsetX * this.sudokuService.boardSize / this.elementRef.nativeElement.offsetWidth);
         // const y: number = Math.floor(k.offsetY * this.sudokuService.boardSize / this.elementRef.nativeElement.offsetHeight);
@@ -50,8 +48,6 @@ export class SudokuBoardDirective extends AbstractPixiRenderDirective<SudokuBoar
     public getBoard(): number[][] {
         return this.sudokuService.field;
     }
-
-
 
     public async loadGame(): Promise<SudokuBoardMod.SudokuBoardGameApp> {
         return new (await this.tcg).SudokuBoardGameApp({

@@ -41,6 +41,9 @@ export class Tank extends Container {
         this.base.endFill();
         this.turret.lineStyle(3, 0x0033ff);
         this.turret.moveTo(Tank.TURRET_OFFSET.x, Tank.TURRET_OFFSET.y);
-        this.turret.lineTo(Tank.BARREL_LENGTH * Math.cos(this.turretAngle) + Tank.TURRET_OFFSET.x, Tank.BARREL_LENGTH * Math.sin(this.turretAngle) + Tank.TURRET_OFFSET.y);
+        this.turret.lineTo(
+            Tank.BARREL_LENGTH * Math.cos(this.turretAngle) + Tank.TURRET_OFFSET.x,
+            Tank.BARREL_LENGTH * Math.sin(this.turretAngle) + Tank.TURRET_OFFSET.y
+        );
     }
 }

@@ -11,8 +11,6 @@
         "build:types": "tsc --project ./tsconfig.json  -d --declarationDir dist/types --declarationMap --emitDeclarationOnly",
         "build:readme": "npx @appnest/readme generate --input ../package_readme_blueprint.md --config readme_config.json",
         "serve": "webpack serve",
-        "test": "mocha --config ../../.mocharc.yml",
-        "test:coverage": "nyc --nycrc-path ../../.nycrc.json npm run test",
         "lint": "eslint -c .eslintrc.js --ext .ts ./src",
         "postlint": "prettier --config ./../../.prettierrc src/**/*.ts --check",
         "lint:fix": "eslint -c .eslintrc.js --ext .ts ./src --fix",

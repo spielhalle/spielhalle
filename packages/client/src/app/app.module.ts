@@ -21,7 +21,7 @@ import { NotFoundModule } from './modules/not-found';
     AppRoutingModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
   ],
   providers: [],
 })

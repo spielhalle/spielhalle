@@ -3,17 +3,16 @@
  * Source https://spielhalle.github.io/spielhalle/
  */
 
-import { Application, IApplicationOptions } from '@pixi/app'
+import { Application, IApplicationOptions } from '@pixi/app';
 import { BatchRenderer, Renderer } from '@pixi/core';
 import { IDestroyOptions } from '@pixi/display';
 import { TickerPlugin } from '@pixi/ticker';
 import { Input, InputState } from './inputs';
 import { TankGame } from './tank-game';
 
-Application.registerPlugin(TickerPlugin)
-Renderer.registerPlugin('batch', BatchRenderer)
+Application.registerPlugin(TickerPlugin);
+Renderer.registerPlugin('batch', BatchRenderer);
 export class TankGameApp extends Application {
-
     public static readonly POWER_ACCELERATION = 0.005;
     public static readonly PASSIVE_DECELERATION = 0.95;
     public static readonly STOP_THRESHOLD = 0.0001;
@@ -39,10 +38,12 @@ export class TankGameApp extends Application {
             }
             if (this.powerVelocity !== 0) {
                 this.powerVelocity = this.powerVelocity * Math.pow(TankGameApp.PASSIVE_DECELERATION, dt);
-                if (this.powerVelocity <= TankGameApp.STOP_THRESHOLD &&
+                if (
+                    this.powerVelocity <= TankGameApp.STOP_THRESHOLD &&
                     this.powerVelocity >= -TankGameApp.STOP_THRESHOLD &&
                     aState !== InputState.PRESSED &&
-                    dState !== InputState.PRESSED) {
+                    dState !== InputState.PRESSED
+                ) {
                     this.powerVelocity = 0;
                 }
             }
@@ -63,10 +64,9 @@ export class TankGameApp extends Application {
             const wState: InputState = this.inp.getState('w');
             const sState: InputState = this.inp.getState('s');
             if (wState === InputState.PRESSED && sState !== InputState.PRESSED) {
-                this.tankGame.increaseTankAngle(Math.PI / 180.0 * dt)
-            }
-            else if (wState !== InputState.PRESSED && sState === InputState.PRESSED) {
-                this.tankGame.increaseTankAngle(-Math.PI / 180.0 * dt)
+                this.tankGame.increaseTankAngle((Math.PI / 180.0) * dt);
+            } else if (wState !== InputState.PRESSED && sState === InputState.PRESSED) {
+                this.tankGame.increaseTankAngle((-Math.PI / 180.0) * dt);
             }
         });
     }

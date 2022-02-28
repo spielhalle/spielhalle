@@ -24,7 +24,7 @@ export class KeyListener {
         return keyListener;
     }
 
-    private constructor(public readonly eventTarget: EventTarget, public readonly key: string) { }
+    private constructor(public readonly eventTarget: EventTarget, public readonly key: string) {}
 
     private downHandler(event: KeyboardEvent): void {
         console.log(event.key, event.type);
@@ -46,7 +46,9 @@ export class KeyListener {
     }
 
     public remove() {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         this.eventTarget.removeEventListener('keydown', this.downHandler.bind(this));
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         this.eventTarget.removeEventListener('keyup', this.upHandler.bind(this));
     }
 }

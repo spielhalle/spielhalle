@@ -20,9 +20,8 @@ export class BarrelExplosion extends Graphics {
     public redraw(progress = 0): void {
         const sineProgress: number = 1 - Math.sin(Math.PI * progress);
         const explosionColor: number = rgb2hex([1, sineProgress, progress < 0.5 ? 0 : sineProgress]);
-        const fadeProgress: number = progress >= BarrelExplosion.FADE_START ?
-            1 - ((progress - BarrelExplosion.FADE_START) / (1 - BarrelExplosion.FADE_START)) :
-            1;
+        const fadeProgress: number =
+            progress >= BarrelExplosion.FADE_START ? 1 - (progress - BarrelExplosion.FADE_START) / (1 - BarrelExplosion.FADE_START) : 1;
         this.clear();
         this.beginFill(explosionColor, fadeProgress);
         this.moveTo(0, 0);
@@ -42,6 +41,5 @@ export class BarrelExplosion extends Graphics {
         const explosionScale: number = relativeProgressSquared / (2.0 * (relativeProgressSquared - relativeProgress) + 1.0);
         this.scale.set(explosionScale, explosionScale);
         this.redraw(relativeProgress);
-
     }
 }

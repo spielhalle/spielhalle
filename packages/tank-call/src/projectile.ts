@@ -33,7 +33,6 @@ export class Projectile extends Graphics {
         this.velocity.y = Math.min(Projectile.TERMINAL_VELOCITY, this.velocity.y + Projectile.GRAVITY.y * delta);
         //const totalVelocity:number=this.velocity.magnitude();
         this.velocity.multiplyScalar(0.95 * delta);
-        console.log(Math.sqrt((this.velocity.x * this.velocity.x) + (this.velocity.y * this.velocity.y)), this.velocity.normalize().magnitude())
         this.lastX = this.x;
         this.lastY = this.y;
         this.x = this.x + delta * this.velocity.x;

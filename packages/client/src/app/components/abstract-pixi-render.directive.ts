@@ -6,8 +6,6 @@ import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, Directive, ElementRef, Inject, NgZone, OnChanges, OnDestroy, PLATFORM_ID, SimpleChanges } from '@angular/core';
 import type { Application } from '@pixi/app';
 
-
-
 @Directive({})
 export abstract class AbstractPixiRenderDirective<STAGE extends Application> implements OnChanges, OnDestroy, AfterViewInit {
 

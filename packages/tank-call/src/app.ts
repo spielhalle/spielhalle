@@ -14,10 +14,8 @@ const app: TankGameApp = new TankGameApp({
 });
 console.log(Object.keys(app));
 
-
 const r = (): void => {
-
     app.render();
     requestAnimationFrame(r);
-}
+};
 requestAnimationFrame(r);
