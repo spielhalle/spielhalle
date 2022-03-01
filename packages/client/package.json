@@ -15,7 +15,7 @@
     "prepublishOnly": "npm run test && npm run docs && npm run build",
     "build:githubpages": "ng build --aot --prod --configuration=production,githubpages",
     "prerender": "ng run spielhalle:prerender",
-    "prerender:githubpages": "ng run spielhalle:prerender --configuration=production,githubpages",
+    "prerender:githubpages": "ng run spielhalle:prerender --configuration=production,githubpages --no-guess-routes --routes ./sudoku  --routes ./tank-call  --routes ./ --routes ./404.html",
     "build:pug": "pug ./src --doctype html",
     "build:ssr": "ng build && ng run spielhalle:server",
     "dev:ssr": "ng run spielhalle:serve-ssr",
