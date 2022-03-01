@@ -95,7 +95,7 @@
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "karmaConfig": "./karma.conf.js",
             "styles": [
               "src/styles.css"
             ],
@@ -138,7 +138,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "bundleDependencies": false,
+              "bundleDependencies": true,
               "sourceMap": false,
               "optimization": true,
               "statsJson": true
