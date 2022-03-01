@@ -12,6 +12,7 @@ export class Tank extends Container {
     private base: Graphics;
     private turret: Graphics;
     private mTurretAngle = 0;
+    public static readonly BARREL_LENGTH: number = 20;
 
     constructor() {
         super();
@@ -40,6 +41,9 @@ export class Tank extends Container {
         this.base.endFill();
         this.turret.lineStyle(3, 0x0033ff);
         this.turret.moveTo(Tank.TURRET_OFFSET.x, Tank.TURRET_OFFSET.y);
-        this.turret.lineTo(20 * Math.cos(this.turretAngle) + Tank.TURRET_OFFSET.x, 20 * Math.sin(this.turretAngle) + Tank.TURRET_OFFSET.y);
+        this.turret.lineTo(
+            Tank.BARREL_LENGTH * Math.cos(this.turretAngle) + Tank.TURRET_OFFSET.x,
+            Tank.BARREL_LENGTH * Math.sin(this.turretAngle) + Tank.TURRET_OFFSET.y
+        );
     }
 }

@@ -1,18 +1,17 @@
 /*
- * Package @spielhalle/tank-call
+ * Package @spielhalle/sudoku-board
  * Source https://spielhalle.github.io/spielhalle/
  */
 
-import { TankGameApp } from './tank-game-app';
+import { SudokuBoardGameApp } from './sudoku-board-app';
 
 // The application will create a renderer using WebGL, if possible,
 // with a fallback to a canvas render. It will also setup the ticker
 // and the root stage PIXI.Container.
 
-const app: TankGameApp = new TankGameApp({
+const app: SudokuBoardGameApp = new SudokuBoardGameApp({
     view: document.getElementById('testCanvas') as HTMLCanvasElement,
 });
-console.log(Object.keys(app));
 
 const r = (): void => {
     app.render();

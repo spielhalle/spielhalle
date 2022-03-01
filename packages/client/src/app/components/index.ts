@@ -2,4 +2,4 @@
  * Source https://github.com/spielhalle/spielhalle Package: @spielhalle/client
  */
 
-export * from './sudoku-solver.service';
+export { AbstractPixiRenderDirective } from './abstract-pixi-render.directive';
