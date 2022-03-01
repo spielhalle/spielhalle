@@ -7,8 +7,6 @@
     "build": "ng build",
     "test": "ng test --watch=false --browsers=ChromeHeadless",
     "test:coverage": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
-    "lint": "ng lint",
-    "lint:fix": "ng lint --fix",
     "e2e": "ng e2e",
     "docs": "npx compodoc -p src/tsconfig.app.json -d ./docs",
     "postinstall": "npm run build:pug",
