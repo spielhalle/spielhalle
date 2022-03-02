@@ -53,7 +53,7 @@
     "@angular/router": "13.2.4",
     "@angular/service-worker": "13.2.4",
     "@donmahallem/sudoku": "~0.3.1",
-    "@nguniversal/express-engine": "13.0.1",
+    "@nguniversal/express-engine": "13.0.2",
     "@pixi/app": "~6.2.2",
     "@spielhalle/sudoku-board": "^0.1.0",
     "@spielhalle/tank-call": "^0.5.0",
