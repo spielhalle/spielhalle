@@ -1,6 +1,6 @@
 {
   "name": "@spielhalle/client",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -57,8 +57,8 @@
     "@donmahallem/sudoku": "~0.3.1",
     "@nguniversal/express-engine": "13.0.1",
     "@pixi/app": "~6.2.2",
-    "@spielhalle/sudoku-board": "^0.1.0",
-    "@spielhalle/tank-call": "^0.5.0",
+    "@spielhalle/sudoku-board": "^0.5.1",
+    "@spielhalle/tank-call": "^0.5.1",
     "async-mutex": "^0.3.2",
     "core-js": "3.20.0",
     "express": "4.17.3",

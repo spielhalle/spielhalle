@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/spielhalle/spielhalle/compare/v0.5.0...v0.5.1) (2022-03-08)
+
+
+### Bug Fixes
+
+* **deps:** update angular monorepo to v12.0.4 ([61893f5](https://github.com/spielhalle/spielhalle/commit/61893f5d81bdd3fad1cf15b39a27ea527b878e9f))
+* **deps:** update angular monorepo to v12.2.1 ([9185eb1](https://github.com/spielhalle/spielhalle/commit/9185eb1e4080b964201f6c258632d04ad927c713))
+* **deps:** update angular monorepo to v12.2.10 ([72d759e](https://github.com/spielhalle/spielhalle/commit/72d759e1e5a31afffb5383441ef18cc426c7b128))
+* **deps:** update angularmaterial monorepo to v12.1.3 ([7bd66a9](https://github.com/spielhalle/spielhalle/commit/7bd66a9c125971b0e484348e096e87d498de801d))
+* **deps:** update dependency @donmahallem/sudoku to v0.2.4 ([53d77d1](https://github.com/spielhalle/spielhalle/commit/53d77d1042032a82b3f06e035a37f13a52aaf8d9))
+* **deps:** update dependency core-js to v3.15.0 ([5cf9e6b](https://github.com/spielhalle/spielhalle/commit/5cf9e6ba83d3f70781bd875f6db11d0c25133cc3))
+* **deps:** update dependency core-js to v3.15.1 ([35a33c4](https://github.com/spielhalle/spielhalle/commit/35a33c497b8f71a304f8401cf790c2dc20480c07))
+* **deps:** update dependency core-js to v3.16.1 ([74fcd74](https://github.com/spielhalle/spielhalle/commit/74fcd742eb55f1d2b0f9a7781e05d70bf92db1a5))
+* rework pixi implementation ([#1480](https://github.com/spielhalle/spielhalle/issues/1480)) ([7474942](https://github.com/spielhalle/spielhalle/commit/7474942dcc74fa7d3e8053e7a7357af8648510a7))
+* **tank-call:** rename destroyed to projectileDesctroyed ([3ba2079](https://github.com/spielhalle/spielhalle/commit/3ba2079b9d58c4c40b2cdf953ef7ac423561e3b7))
+
+
+
+
+
+
 # [0.5.0](https://github.com/spielhalle/spielhalle/compare/v0.4.1...v0.5.0) (2021-06-09)
 
 

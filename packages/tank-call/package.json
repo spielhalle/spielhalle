@@ -1,6 +1,6 @@
 {
     "name": "@spielhalle/tank-call",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "description": "A tank call library",
     "module": "dist/esm/index.mjs",
     "types": "dist/types/index.d.ts",
