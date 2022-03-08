@@ -125,7 +125,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "bundleDependencies": false,
+              "bundleDependencies": true,
               "sourceMap": false,
               "optimization": true,
               "statsJson": true
