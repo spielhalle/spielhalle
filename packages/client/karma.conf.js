@@ -28,10 +28,10 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, './coverage/spielhalle'),
       subdir: '.',
       reporters: [
-        { type: 'html' },
-        { type: 'text-summary' },
-        { type: 'lcovonly' },
-        { type: 'json' }
+        { type: 'html', subdir: 'html' },
+        { type: 'text-summary', subdir: 'text' },
+        { type: 'lcovonly', subdir: 'lcov' },
+        { type: 'json', subdir: 'json' }
       ]
     },
     reporters: ['progress', 'kjhtml'],
