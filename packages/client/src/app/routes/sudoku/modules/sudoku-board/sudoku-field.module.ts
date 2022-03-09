@@ -14,9 +14,6 @@ import { NumberDialogComponent } from './component/number-dialog.component';
         SudokuBoardDirective,
         NumberDialogComponent,
     ],
-    entryComponents: [
-        NumberDialogComponent,
-    ],
     exports: [
         SudokuBoardDirective,
     ],
@@ -25,6 +22,6 @@ import { NumberDialogComponent } from './component/number-dialog.component';
         RouterModule,
         MatButtonModule,
         MatDialogModule,
-    ],
+    ]
 })
 export class SudokuFieldModule { }

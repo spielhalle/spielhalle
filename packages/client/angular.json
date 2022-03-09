@@ -95,7 +95,7 @@
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "karmaConfig": "karma.conf.js",
             "styles": [
               "src/styles.css"
             ],
@@ -106,19 +106,6 @@
               "src/manifest.webmanifest"
             ],
             "preserveSymlinks": true
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json",
-              "tsconfig.worker.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "server": {
@@ -138,7 +125,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "bundleDependencies": false,
+              "bundleDependencies": true,
               "sourceMap": false,
               "optimization": true,
               "statsJson": true
@@ -192,15 +179,6 @@
             "production": {
               "devServerTarget": "spielhalle:serve:production"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }

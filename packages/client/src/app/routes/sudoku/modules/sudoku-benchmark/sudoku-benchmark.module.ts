@@ -15,8 +15,6 @@ import { SudokuBenchmarkComponent } from './component';
     declarations: [
         SudokuBenchmarkComponent,
     ],
-    entryComponents: [
-    ],
     exports: [
         SudokuBenchmarkComponent,
     ],
@@ -28,6 +26,6 @@ import { SudokuBenchmarkComponent } from './component';
         MatDividerModule,
         MatTableModule,
         SudokuFieldModule,
-    ],
+    ]
 })
 export class SudokuBenchmarkModule { }
