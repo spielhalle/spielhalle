@@ -1,5 +1,6 @@
 {
     "baseBranches": [
+        "master",
         "dev"
     ],
     "extends": [
