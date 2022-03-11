@@ -93,7 +93,7 @@
     "pug": "3.0.2",
     "pug-cli": "1.0.0-alpha6",
     "pug-loader": "2.4.0",
-    "ts-loader": "9.2.7",
+    "ts-loader": "9.2.8",
     "ts-node": "10.7.0",
     "tslib": "2.3.1",
     "tslint": "6.1.3",
