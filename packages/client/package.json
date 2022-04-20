@@ -60,7 +60,7 @@
     "@spielhalle/sudoku-board": "^0.5.1",
     "@spielhalle/tank-call": "^0.5.1",
     "async-mutex": "^0.3.2",
-    "core-js": "3.22.0",
+    "core-js": "3.22.1",
     "express": "4.17.3",
     "material-design-icons": "3.0.1",
     "rxjs": "~7.5.5",
