@@ -55,7 +55,7 @@
     "@angular/router": "13.3.11",
     "@angular/service-worker": "13.3.11",
     "@donmahallem/sudoku": "~0.3.3",
-    "@nguniversal/express-engine": "13.1.1",
+    "@nguniversal/express-engine": "14.0.0",
     "@pixi/app": "~6.4.2",
     "@spielhalle/sudoku-board": "^0.5.1",
     "@spielhalle/tank-call": "^0.5.1",
